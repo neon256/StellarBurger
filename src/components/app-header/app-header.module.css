@@ -1,0 +1,44 @@
+.header{
+    background: rgba(28, 28, 33, 1);   
+}
+
+.nav{
+    display: flex;
+    justify-content: space-between;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+.left_nav{
+    display: flex;
+}
+.link{
+    color:rgba(133, 133, 173, 1);
+    text-decoration: none;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+.active{
+    composes: link;
+    color: rgba(242, 242, 243, 1);
+}
+.active svg path{
+    fill: rgba(242, 242, 243, 1);
+}
+.link:hover{
+    color: rgba(242, 242, 243, 1);
+    transition: 0.5s;
+}
+.link:hover svg path{
+    fill: rgba(242, 242, 243, 1);
+    transition: 0.5s;
+}
+.ul{
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
