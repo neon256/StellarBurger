@@ -3,6 +3,7 @@ import appMainStyle from './app-main.module.css';
 import BurgerIngredients from "../burger-ingredients/burger-ingredients";
 import BurgerConctructor from "../burger-constructor/burger-constructor";
 import PropTypes, { arrayOf } from "prop-types";
+import { ingredientType } from "../../utils/types";
 
 class AppMain extends React.Component {
     state = {  } 
@@ -15,20 +16,5 @@ class AppMain extends React.Component {
         );
     }
 }
-AppMain.propTypes = {
-    data: arrayOf(PropTypes.shape({
-        id: PropTypes.string,
-        name: PropTypes.string,
-        type: PropTypes.string,
-        proteins: PropTypes.number,
-        fat: PropTypes.number,
-        carbohydrates: PropTypes.number,
-        calories: PropTypes.number,
-        price: PropTypes.number,
-        image: PropTypes.string,
-        image_mobile: PropTypes.string,
-        image_large: PropTypes.string,
-        __v: PropTypes.number
-      }))
-}
+ingredientType(AppMain);
 export default AppMain;

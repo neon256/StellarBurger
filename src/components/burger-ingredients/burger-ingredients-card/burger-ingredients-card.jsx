@@ -1,6 +1,8 @@
 import React from 'react'
 import burgerIngredientsStyle from '../burger-ingredients.module.css'
 import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import { ingredientType } from '../../../utils/types';
+import PropTypes from 'prop-types';
 const BurgerIngredientsCard = ({ type, data }) => {
   return (
             <div className={burgerIngredientsStyle.card_container}>
@@ -23,5 +25,8 @@ const BurgerIngredientsCard = ({ type, data }) => {
             </div>
   )
 }
-
+ingredientType(BurgerIngredientsCard)
+BurgerIngredientsCard.propTypes = {
+    type: PropTypes.string
+}
 export default BurgerIngredientsCard
