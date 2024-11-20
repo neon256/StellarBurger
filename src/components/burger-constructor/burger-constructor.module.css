@@ -1,0 +1,40 @@
+.ingredients_main_container::-webkit-scrollbar {
+    width: 8px;
+}
+.ingredients_main_container::-webkit-scrollbar-track {
+    background: rgba(47, 47, 55, 1); 
+}
+.ingredients_main_container::-webkit-scrollbar-thumb {
+    background: rgba(133, 133, 173, 1); 
+}
+  
+.ingredients_container{
+    display: flex;
+    flex-direction: column;
+    gap: 10px; 
+    align-items: flex-end;
+    justify-content: center;
+    list-style-type: none;
+    margin-top: 0;
+}
+.ingredients_main_container{
+    display: flex; 
+    flex-direction: column; 
+    padding: 0 8px 0 0;
+    gap: 10px; 
+    align-items: flex-end;
+    max-height: 255px;
+    overflow-y: auto;
+}
+.ingredients{
+    display: flex; 
+    align-items: center;
+    width: 100%; 
+    gap: 8px;
+}
+.button_container{
+    display: flex; 
+    align-items: center;
+    gap: 40px;
+    justify-content: flex-end;
+}
