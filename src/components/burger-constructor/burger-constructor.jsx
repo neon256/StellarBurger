@@ -10,18 +10,7 @@ import OrderDetails from "../modal/order-details/order-details";
 function BurgerConctructor({ data }) {
     const [visible, setVisible] = useState(false);
 
-    const handleEscClick = (event) =>{
-        if(event.key === 'Escape'){
-            handleCloseModal();
-        }
-    }
 
-    useEffect(() => {
-        document.addEventListener('keydown', handleEscClick);
-        return () => {
-            document.removeEventListener('keydown', handleEscClick);
-        }
-    },[])
 
     const count = data.filter((element) => {
         if (element.name !== 'Флюоресцентная булка R2-D3') {

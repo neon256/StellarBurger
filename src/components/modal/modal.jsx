@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import ModalOverlay from './modal-overlay/modal-overlay'
 import ModalHeader from './modal-header/modal-header';
@@ -6,10 +6,21 @@ import modalStyle from './modal.module.css'
 
 const modalRoot = document.getElementById('react-modals')
 
-class Modal extends React.Component {
-    render() {
+function Modal({onClose, children, header}) {
 
-        const { onClose, children, header } = this.props;
+
+        const handleEscClick = (event) =>{
+            if(event.key === 'Escape'){
+                onClose()
+            }
+        }
+    
+        useEffect(() => {
+            document.addEventListener('keydown', handleEscClick);
+            return () => {
+                document.removeEventListener('keydown', handleEscClick);
+            }
+        },[]) 
         return ReactDOM.createPortal(
             (
                 <>
@@ -22,7 +33,6 @@ class Modal extends React.Component {
             ),
             modalRoot
         );
-    }
 }
 
 export default Modal

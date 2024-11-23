@@ -9,19 +9,7 @@ const BurgerIngredientsCard = ({ type, data }) => {
 
     const [visible, setVisible] = useState(false);
     const [info, setInfo] = useState();
-    
-    const handleEscClick = (event) =>{
-        if(event.key === 'Escape'){
-            handleCloseModal();
-        }
-    }
 
-    useEffect(() => {
-        document.addEventListener('keydown', handleEscClick);
-        return () => {
-            document.removeEventListener('keydown', handleEscClick);
-        }
-    },[])
 
     function handleOpenModal(data){
         setVisible(true)
