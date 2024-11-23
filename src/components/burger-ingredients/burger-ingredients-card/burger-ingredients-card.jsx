@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import burgerIngredientsStyle from '../burger-ingredients.module.css'
 import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { ingredientType } from '../../../utils/types';
@@ -9,6 +9,19 @@ const BurgerIngredientsCard = ({ type, data }) => {
 
     const [visible, setVisible] = useState(false);
     const [info, setInfo] = useState();
+    
+    const handleEscClick = (event) =>{
+        if(event.key === 'Escape'){
+            handleCloseModal();
+        }
+    }
+
+    useEffect(() => {
+        document.addEventListener('keydown', handleEscClick);
+        return () => {
+            document.removeEventListener('keydown', handleEscClick);
+        }
+    },[])
 
     function handleOpenModal(data){
         setVisible(true)

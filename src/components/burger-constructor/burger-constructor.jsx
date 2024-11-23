@@ -1,6 +1,6 @@
 import { Button, ConstructorElement, CurrencyIcon, DragIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import burgerConstructorStyle from './burger-constructor.module.css'
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import BurgerConstructorList from "./burger-constructor-list/burger-constructor-list";
 import PropTypes, { arrayOf } from "prop-types";
 import { ingredientType } from "../../utils/types";
@@ -9,6 +9,19 @@ import OrderDetails from "../modal/order-details/order-details";
 
 function BurgerConctructor({ data }) {
     const [visible, setVisible] = useState(false);
+
+    const handleEscClick = (event) =>{
+        if(event.key === 'Escape'){
+            handleCloseModal();
+        }
+    }
+
+    useEffect(() => {
+        document.addEventListener('keydown', handleEscClick);
+        return () => {
+            document.removeEventListener('keydown', handleEscClick);
+        }
+    },[])
 
     const count = data.filter((element) => {
         if (element.name !== 'Флюоресцентная булка R2-D3') {
@@ -20,9 +33,11 @@ function BurgerConctructor({ data }) {
     function handleOpenModal() {
         setVisible(true)
     }
+
     function handleCloseModal() {
         setVisible(false)
     }
+
     const modal = (
         <Modal header='' onClose={handleCloseModal}>
             <OrderDetails/>
