@@ -5,16 +5,13 @@ import BurgerConctructor from "../burger-constructor/burger-constructor";
 import PropTypes, { arrayOf } from "prop-types";
 import { ingredientType } from "../../utils/types";
 
-class AppMain extends React.Component {
-    state = {  } 
-    render() { 
+function AppMain({data}){ 
         return (
             <main className={appMainStyle.container}>
-                <BurgerIngredients data={this.props.data}/>
-                <BurgerConctructor data={this.props.data}/>
+                <BurgerIngredients data={data}/>
+                <BurgerConctructor data={data}/>
             </main>
         );
     }
-}
 ingredientType(AppMain);
 export default AppMain;

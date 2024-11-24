@@ -1,0 +1,15 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.info{
+    color: rgba(133, 133, 173, 1);
+}
+
+.footer{
+    display: flex;
+    gap: 20px;
+}
