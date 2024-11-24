@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom'
 import ModalOverlay from './modal-overlay/modal-overlay'
 import ModalHeader from './modal-header/modal-header';
 import modalStyle from './modal.module.css'
+import PropTypes from 'prop-types';
 
 const modalRoot = document.getElementById('react-modals')
 
-function Modal({onClose, children, header}) {
+function Modal({ onClose, children, header }) {
 
 
         const handleEscClick = (event) =>{
@@ -33,6 +34,11 @@ function Modal({onClose, children, header}) {
             ),
             modalRoot
         );
+        
 }
-
+Modal.propTypes = { 
+    onClose: PropTypes.func,
+    children: PropTypes.object,
+    header: PropTypes.string
+}
 export default Modal
