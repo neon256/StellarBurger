@@ -41,3 +41,28 @@
 .active_border{
     border: 2px solid rgb(0, 102, 255);
 }
+
+.current_ingredients_card{
+    width: 536px; 
+    text-align: center; 
+    border-radius: 40px; 
+    background-color: rgba(28, 28, 33, 1);
+}
+
+.current_bun_top_card{
+    width: 536px; 
+    text-align: center; 
+    border-radius: 40px;
+    border-top-left-radius: 88px;
+    border-top-right-radius: 88px;
+    background-color: rgba(28, 28, 33, 1);
+}
+
+.current_bun_button_card{
+    width: 536px; 
+    text-align: center; 
+    border-radius: 40px;
+    border-bottom-left-radius: 88px;
+    border-bottom-right-radius: 88px;
+    background-color: rgba(28, 28, 33, 1);
+}

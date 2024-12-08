@@ -9,14 +9,13 @@ import { DELETE_INGRIDIENTS_DETAIL, INGRIDIENTS_DETAIL } from '../../../services
 import { useDrag } from 'react-dnd';
 import { SET_INGREDIENTS_PRICE } from '../../../services/actions/burger-constructor';
 
-const BurgerIngredientsCard = ({ id, ing}) => {
+const BurgerIngredientsCard = ({ id, ing }) => {
 
     const [visible, setVisible] = useState(false);
     const [info, setInfo] = useState();
     const dispatch = useDispatch();
     const ingredients = useSelector(state => state.burgerConstructor)
-    
-    
+
     function handleOpenModal(data) {
         dispatch({ type: INGRIDIENTS_DETAIL, value: data });
         setVisible(true)
@@ -27,7 +26,7 @@ const BurgerIngredientsCard = ({ id, ing}) => {
         dispatch({ type: DELETE_INGRIDIENTS_DETAIL })
     }
 
-    const [{bun, ingredient}, dragRef] = useDrag({
+    const [{ bun, ingredient }, dragRef] = useDrag({
         type: 'ingredient',
         item: ing,
         collect: monitor => ({
@@ -36,16 +35,16 @@ const BurgerIngredientsCard = ({ id, ing}) => {
         })
     })
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch({
-            type:SET_INGREDIENTS_PRICE,
+            type: SET_INGREDIENTS_PRICE,
             dragBun: bun,
             dragIng: ingredient,
         })
     }, [bun, ingredient])
 
-    const count = useMemo(()=>{
-        if(ing.type === 'bun' && ingredients.bun && id === ingredients.bun._id){
+    const count = useMemo(() => {
+        if (ing.type === 'bun' && ingredients.bun && id === ingredients.bun._id) {
             return 2
         }
         return ingredients.ingredients.filter(item => item._id === id).length;

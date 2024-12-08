@@ -11,35 +11,35 @@ const modalRoot = document.getElementById('react-modals')
 
 function Modal({ onClose, children, header }) {
 
-        const dispatch = useDispatch();
-        const handleEscClick = (event) =>{
-            if(event.key === 'Escape'){
-                onClose()
-                dispatch({type:DELETE_INGRIDIENTS_DETAIL})
-            }
+    const dispatch = useDispatch();
+    const handleEscClick = (event) => {
+        if (event.key === 'Escape') {
+            onClose()
+            
         }
-    
-        useEffect(() => {
-            document.addEventListener('keydown', handleEscClick);
-            return () => {
-                document.removeEventListener('keydown', handleEscClick);
-            }
-        },[]) 
-        return ReactDOM.createPortal(
-            (
-                <>
-                    <div className={modalStyle.modal}>
-                        <ModalHeader onClose={onClose}>{header}</ModalHeader>
-                        {children}
-                    </div>
-                    <ModalOverlay onClose={onClose} />
-                </>
-            ),
-            modalRoot
-        );
-        
+    }
+
+    useEffect(() => {
+        document.addEventListener('keydown', handleEscClick);
+        return () => {
+            document.removeEventListener('keydown', handleEscClick);
+        }
+    }, [])
+    return ReactDOM.createPortal(
+        (
+            <>
+                <div className={modalStyle.modal}>
+                    <ModalHeader onClose={onClose}>{header}</ModalHeader>
+                    {children}
+                </div>
+                <ModalOverlay onClose={onClose} />
+            </>
+        ),
+        modalRoot
+    );
+
 }
-Modal.propTypes = { 
+Modal.propTypes = {
     onClose: PropTypes.func,
     children: PropTypes.object,
     header: PropTypes.string
