@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import burgerIngredientsStyle from '../burger-ingredients.module.css'
 import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import { ingredientType } from '../../../utils/types';
 import PropTypes, { element } from 'prop-types';
 import Modal from '../../modal/modal';
 import IngredientDetails from '../../modal/ingredient-details/ingredient-details';
@@ -70,7 +69,6 @@ const BurgerIngredientsCard = ({ id, ing}) => {
         </>
     )
 }
-ingredientType(BurgerIngredientsCard)
 BurgerIngredientsCard.propTypes = {
     ing: PropTypes.object.isRequired,
     id: PropTypes.string.isRequired

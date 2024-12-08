@@ -3,7 +3,6 @@ import burgerConstructorStyle from './burger-constructor.module.css'
 import React, { useEffect, useMemo, useState } from "react";
 import BurgerConstructorList from "./burger-constructor-list/burger-constructor-list";
 import PropTypes, { arrayOf } from "prop-types";
-import { ingredientType } from "../../utils/types";
 import Modal from "../modal/modal";
 import OrderDetails from "../modal/order-details/order-details";
 import { useDispatch, useSelector } from "react-redux";

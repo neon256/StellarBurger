@@ -3,7 +3,6 @@ import appMainStyle from './app-main.module.css';
 import BurgerIngredients from "../burger-ingredients/burger-ingredients";
 import BurgerConctructor from "../burger-constructor/burger-constructor";
 import PropTypes, { arrayOf } from "prop-types";
-import { ingredientType } from "../../utils/types";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
 
