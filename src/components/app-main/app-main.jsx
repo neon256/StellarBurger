@@ -4,14 +4,17 @@ import BurgerIngredients from "../burger-ingredients/burger-ingredients";
 import BurgerConctructor from "../burger-constructor/burger-constructor";
 import PropTypes, { arrayOf } from "prop-types";
 import { ingredientType } from "../../utils/types";
+import { HTML5Backend } from "react-dnd-html5-backend";
+import { DndProvider } from "react-dnd";
 
-function AppMain({data}){ 
+function AppMain(){ 
         return (
             <main className={appMainStyle.container}>
-                <BurgerIngredients data={data}/>
-                <BurgerConctructor data={data}/>
+                <DndProvider backend={HTML5Backend}>
+                    <BurgerIngredients />
+                    <BurgerConctructor/>
+                </DndProvider>
             </main>
         );
     }
-ingredientType(AppMain);
 export default AppMain;

@@ -1,9 +1,11 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 
 const OrderDetails = () => {
+    const order = useSelector(state => state.order.order)
     return (
         <div style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
-            <p className='text text_type_digits-large'>034536</p>
+            <p className='text text_type_digits-large'>{order}</p>
             <p className='text text_type_main-medium mt-8'>идентификатор заказа</p>
             <svg width="107" height="102" viewBox="0 0 107 102" fill="none" xmlns="http://www.w3.org/2000/svg" className='mt-15 mb-15'>
                 <path fillRule="evenodd" clipRule="evenodd" d="M8.36637 37.3873C2.54454 45.5044 2.54455 56.4957 8.36637 64.6127L28.3336 92.4518C34.1554 100.569 44.4748 103.965 53.8947 100.865L86.2023 90.2313C95.6223 87.1309 102 78.2387 102 68.2055V33.7945C102 23.7612 95.6222 14.8691 86.2023 11.7687L53.8947 1.13508C44.4748 -1.96536 34.1554 1.43114 28.3336 9.54819L8.36637 37.3873Z" fill="url(#paint0_radial_311_23)" fillOpacity="0.25" />
