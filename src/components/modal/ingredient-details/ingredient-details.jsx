@@ -2,7 +2,9 @@ import React from 'react'
 import ingretientsDetailsStyle from './ingredient-details.module.css'
 import { ingredientType } from '../../../utils/types'
 import PropTypes from 'prop-types'
-const IngredientDetails = ({data}) => {
+import { useSelector } from 'react-redux'
+const IngredientDetails = () => {
+    const data = useSelector(state => state.details.data);
   return (
     <div className={ingretientsDetailsStyle.container}>
         <img src={data.image_large} alt={data.name} />
@@ -27,8 +29,5 @@ const IngredientDetails = ({data}) => {
         </div>
     </div>
   )
-}
-IngredientDetails.propTypes = {
-    data: PropTypes.object
 }
 export default IngredientDetails

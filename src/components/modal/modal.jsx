@@ -4,15 +4,18 @@ import ModalOverlay from './modal-overlay/modal-overlay'
 import ModalHeader from './modal-header/modal-header';
 import modalStyle from './modal.module.css'
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { DELETE_INGRIDIENTS_DETAIL } from '../../services/actions/ingredient-details';
 
 const modalRoot = document.getElementById('react-modals')
 
 function Modal({ onClose, children, header }) {
 
-
+        const dispatch = useDispatch();
         const handleEscClick = (event) =>{
             if(event.key === 'Escape'){
                 onClose()
+                dispatch({type:DELETE_INGRIDIENTS_DETAIL})
             }
         }
     

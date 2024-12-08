@@ -6,16 +6,15 @@ import BurgerIngredientsNav from './burger-ingredients-nav/burger-ingredients-na
 import PropTypes, { arrayOf } from 'prop-types'
 import { ingredientType } from '../../utils/types';
 
-const BurgerIngredients = ({ data }) => {    
+const BurgerIngredients = () => {    
   return (
     <section className={`mt-10 ${burgerIngredientsStyle.container}`}>
         <h1 className="text text_type_main-large mb-5">Соберите бургер</h1>
         <BurgerIngredientsNav/>
-        <BurgerIngredientsList data={data}/>
+        <BurgerIngredientsList />
     </section>
   )
  
 }
-ingredientType(BurgerIngredients);
 
 export default BurgerIngredients
