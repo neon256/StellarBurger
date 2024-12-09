@@ -30,3 +30,12 @@
     z-index: 0;
     cursor: pointer;
 }
+.order_details{
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+}
+
+.color{
+    color: rgba(133, 133, 173, 1); 
+}

@@ -45,7 +45,7 @@ export const burgerConstructor = (state = initialConstuctor, action) => {
     case INGREDIENTS_REMOVE: {
       return {
         ...state,
-        ingredients: [...state.ingredients].filter(ing => ing._id !== action.id)
+        ingredients: [...state.ingredients].filter(ing => ing.uuid !== action.id)
       };
     }
     default: {

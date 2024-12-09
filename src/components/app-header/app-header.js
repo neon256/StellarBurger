@@ -13,14 +13,8 @@ class AppHeader extends React.Component {
     return (
       <header className={headerStyles.header}>
         <nav className={headerStyles.nav}>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              flex: "0 1 62%",
-            }}
-          >
-            <div style={{ display: "flex" }}>
+          <div className={headerStyles.nav_container}>
+            <div className={headerStyles.flex}>
               <a
                 href=""
                 className={`text text_type_main-default p-5 mr-2 ${headerStyles.active}`}

@@ -1,12 +1,13 @@
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
 import React from 'react'
 import { useSelector } from 'react-redux'
+import burgerIngredientsStyle from '../burger-ingredients.module.css'
 
 const BurgerIngredientsNav = () => {
     const [current, setCurrent] = React.useState('one')
     const tab = useSelector(state => state.tab.tab)
     return (
-        <div style={{ display: 'flex' }} className='mb-10'>
+        <div  className={`mb-10  ${burgerIngredientsStyle.flex}`}>
             <Tab value="one" active={tab === 'one'} onClick={setCurrent}>
                 Булки
             </Tab>

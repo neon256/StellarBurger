@@ -58,7 +58,7 @@ const BurgerConstructorListElement = ({ ing, id, index, moveIngredient }) => {
   drag(drop(ref))
 
   function handleRemove(id){
-    dispatch({type: INGREDIENTS_REMOVE, id:id})
+    dispatch({type: INGREDIENTS_REMOVE, id:ing.uuid})
   }
   return (
     <>

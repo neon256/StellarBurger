@@ -41,14 +41,14 @@ const BurgerIngredientsCard = ({ id, ing }) => {
             dragBun: bun,
             dragIng: ingredient,
         })
-    }, [bun, ingredient])
+    }, [ingredients.bun, ingredients.ingredients])
 
     const count = useMemo(() => {
         if (ing.type === 'bun' && ingredients.bun && id === ingredients.bun._id) {
             return 2
         }
         return ingredients.ingredients.filter(item => item._id === id).length;
-    }, [bun, ingredient, id, ingredients.bun])
+    }, [ingredients.bun, ingredients.ingredients, ingredients])
 
     const modal = () => (
         <Modal header='Детали ингредиента' onClose={handleCloseModal}>

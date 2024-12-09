@@ -1,10 +1,11 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import modalStyle from '../modal.module.css'
 
 const OrderDetails = () => {
     const order = useSelector(state => state.order.order)
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <div className={modalStyle.order_details}>
             <p className='text text_type_digits-large'>{order}</p>
             <p className='text text_type_main-medium mt-8'>идентификатор заказа</p>
             <svg width="107" height="102" viewBox="0 0 107 102" fill="none" xmlns="http://www.w3.org/2000/svg" className='mt-15 mb-15'>
@@ -29,7 +30,7 @@ const OrderDetails = () => {
             </svg>
 
             <p className='text text_type_main-default mb-2'>Ваш заказ начали готовить</p>
-            <p className='text text_type_main-default mb-20' style={{ color: 'rgba(133, 133, 173, 1)' }}>Дождитесь готовности на орбитальной станции</p>
+            <p className={`text text_type_main-default mb-20 ${modalStyle.color}`} >Дождитесь готовности на орбитальной станции</p>
         </div>
     )
 }
