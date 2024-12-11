@@ -42,3 +42,7 @@
 .ingredients_container::-webkit-scrollbar-thumb {
   background: rgba(133, 133, 173, 1); 
 }
+
+.flex{
+  display: flex; 
+}

@@ -8,6 +8,11 @@
     max-width: 1280px;
     margin: 0 auto;
 }
+.nav_container{
+    display: flex;
+    justify-content: space-between;
+    flex: 0 1 62%;
+}
 .left_nav{
     display: flex;
 }
@@ -41,4 +46,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+.flex{
+    display: flex; 
 }
