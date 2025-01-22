@@ -8,13 +8,14 @@ import OrderDetails from "../modal/order-details/order-details";
 import { useDispatch, useSelector } from "react-redux";
 import { useDrop } from "react-dnd";
 import { order, POST_INGRIDIENTS_FAILED, POST_INGRIDIENTS_REQUEST, POST_INGRIDIENTS_SUCCESS } from "../../services/actions/order";
+import { useNavigate } from "react-router-dom";
 
 function BurgerConctructor() {
     const [visible, setVisible] = useState(false);
     const ingredients = useSelector(state => state.burgerConstructor);
     const dispatch = useDispatch();
     const [totalPrice, setTotalPrice] = useState(0);
-    
+    const navigate = useNavigate()
 
     const price = useMemo(() => {
         return ingredients.ingredients.reduce(
@@ -40,6 +41,9 @@ function BurgerConctructor() {
         setVisible(false)
     }
     function createOrder(orderItems, handleOpenModal){
+        if(!localStorage.getItem('accessToken')){
+            return navigate('/login')
+        }
         dispatch(order(orderItems, handleOpenModal))
     }
 

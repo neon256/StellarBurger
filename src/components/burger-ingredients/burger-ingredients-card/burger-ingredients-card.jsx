@@ -8,22 +8,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import { DELETE_INGRIDIENTS_DETAIL, INGRIDIENTS_DETAIL } from '../../../services/actions/ingredient-details';
 import { useDrag } from 'react-dnd';
 import { SET_INGREDIENTS_PRICE } from '../../../services/actions/burger-constructor';
+import { Link, useNavigate } from 'react-router-dom';
 
-const BurgerIngredientsCard = ({ id, ing }) => {
+const BurgerIngredientsCard = ({ id, ing, location }) => {
 
     const [visible, setVisible] = useState(false);
     const [info, setInfo] = useState();
     const dispatch = useDispatch();
     const ingredients = useSelector(state => state.burgerConstructor)
-
     function handleOpenModal(data) {
-        dispatch({ type: INGRIDIENTS_DETAIL, value: data });
-        setVisible(true)
+        dispatch({ type: INGRIDIENTS_DETAIL, value: data });   
     }
 
     function handleCloseModal() {
-        setVisible(false)
         dispatch({ type: DELETE_INGRIDIENTS_DETAIL })
+        setVisible(false)
     }
 
     const [{ bun, ingredient }, dragRef] = useDrag({
@@ -58,18 +57,18 @@ const BurgerIngredientsCard = ({ id, ing }) => {
 
     return (
         <>
-            <div ref={dragRef} className={`ml-4 ${burgerIngredientsStyle.card}`} key={id} onClick={() => handleOpenModal(ing)}>
+            <Link ref={dragRef} className={`ml-4 ${burgerIngredientsStyle.card}`} key={id} onClick={() => handleOpenModal(ing)} to={`/ingredients/${id}`} state={{background: location}}>
                 <img src={ing.image} alt="Фото булки" className='ml-4 mr-4' />
                 <div className={`text text_type_digits-default mt-1 mb-1 ${burgerIngredientsStyle.price}`}>{ing.price}<CurrencyIcon type="primary" /></div>
                 <p className='text text_type_main-default'>{ing.name}</p>
                 {count ? <Counter count={count} size="default" extraClass="m-1" /> : (<></>)}
-            </div>
-            {visible && modal(info)}
+            </Link>
         </>
     )
 }
 BurgerIngredientsCard.propTypes = {
     ing: PropTypes.object.isRequired,
-    id: PropTypes.string.isRequired
+    id: PropTypes.string.isRequired,
+    location: PropTypes.object
 }
 export default BurgerIngredientsCard

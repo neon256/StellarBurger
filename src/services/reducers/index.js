@@ -5,6 +5,8 @@ import { thunk } from "redux-thunk";
 import { viewedIngridients } from "./ingredient-details";
 import { burgerConstructor, constructor } from "./burger-constructor";
 import { order } from "./order";
+import { auth, user } from "./user";
+import { resetPassword } from "./reset-password";
 
 const rootReducer = combineReducers({
   ingridient: listAllGetIngridients,
@@ -12,6 +14,8 @@ const rootReducer = combineReducers({
   tab: activeTab,
   burgerConstructor: burgerConstructor,
   order: order,
+  user: user,
+  resetPassword: resetPassword,
 });
 
 const composeEnhancers =

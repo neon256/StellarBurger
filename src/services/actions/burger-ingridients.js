@@ -18,7 +18,6 @@ export function getData(setLoad) {
           .then(checkResponse)
           .then((data) => {
             setLoad(false);
-    
             dispatch({ type: GET_INGRIDIENTS_SUCCESS, value: data.data });
           })
           .catch((error) => {
