@@ -18,6 +18,7 @@ export const publicRoutes = [
     {path: '/forgot-password', component:<ForgotPasswordPage/>},
     {path: '/login', component:<AuthPage/>},
     {path: '/register', component:<RegisterPage/>},
+    {path: '/ingredients/:id', component:<IngredientsPage/>},
 ]
 
 export const resetRoutes = [
