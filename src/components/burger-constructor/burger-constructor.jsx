@@ -44,6 +44,9 @@ function BurgerConctructor() {
         if(!localStorage.getItem('accessToken')){
             return navigate('/login')
         }
+        if(!orderItems){
+            return
+        }
         dispatch(order(orderItems, handleOpenModal))
     }
 

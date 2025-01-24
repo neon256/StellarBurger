@@ -18,6 +18,10 @@ export const GET_USER_REQUEST = "GET_USER_REQUEST";
 export const GET_USER_FAILED = "GET_USER_FAILED";
 export const GET_USER_SUCCESS = "GET_USER_SUCCESS";
 
+export const POST_RESET_TOKEN_REQUEST = "POST_RESET_TOKEN_REQUEST";
+export const POST_RESET_TOKEN_FAILED = "POST_RESET_TOKEN_FAILED";
+export const POST_RESET_TOKEN_SUCCESS = "POST_RESET_TOKEN_SUCCESS";
+
 export function postAuth(email, password, navigate) {
   return function (dispatch) {
     dispatch({ type: POST_AUTH_REQUEST });
@@ -120,3 +124,26 @@ export function patchUser(name, email, password, setNameValue, setEmailValue) {
     }
 }
 
+export function postResetToken(){
+  return function(dispatch){
+    dispatch({type: POST_RESET_TOKEN_REQUEST})
+    const res = fetch(`${BASE_URL}/auth/token`, {
+      method: 'POST',
+      headers: {
+        'Content-type':'application/json'
+      },
+      body: JSON.stringify({'token': localStorage.getItem('refreshToken')})
+    })
+    .then(checkResponse)
+    .then((data)=>{
+      localStorage.removeItem('accessToken')
+      localStorage.setItem('accessToken', data.accessToken)
+      localStorage.removeItem('refreshToken')
+      localStorage.setItem('refreshToken', data.refreshToken)
+      console.log(data)
+    })
+    .catch(error=>{
+      console.log(error)
+    })
+  }
+}

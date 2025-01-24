@@ -3,7 +3,7 @@ import React, { act, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import profileStyle from './profile-page.module.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { getUser, patchUser } from '../../services/actions/user'
+import { getUser, patchUser, postResetToken } from '../../services/actions/user'
 
 const ProfilePage = () => {
     let user = useSelector(state=>state.user);
@@ -46,7 +46,13 @@ const ProfilePage = () => {
         localStorage.removeItem('refreshToken')
         window.location.reload()
     }
+    function resetToken(){
+            if(!dispatch(getUser())){
+                dispatch(postResetToken())
+            }
+        }
     useEffect(()=>{
+        resetToken()
         dispatch(getUser(setLoad, setNameValue, setEmailValue));
     },[])
     if(load){
