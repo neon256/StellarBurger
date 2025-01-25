@@ -1,16 +1,12 @@
 import React from 'react'
+import ingretientsDetailsStyle from './ingredient-details.module.css'
+import PropTypes from 'prop-types'
 import { useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
-import ingretientsDetailsStyle from './ingredients-page.module.css'
-
-const IngredientsPage = () => {
-    const ingredients = useSelector((state) => state.ingridient.data)
-    const {id} = useParams()
-    const data = ingredients.find(item => item._id == id);
-    console.log(data)
-  return (
-    <div className={ingretientsDetailsStyle.container}>
-            <img src={data.image_large} alt={'ошибка'} />
+const IngredientDetails = () => {
+    const data = useSelector((state: any) => state.details.data);
+    return (
+        <div className={ingretientsDetailsStyle.container}>
+            <img src={data.image_large} alt={data.name} />
             <p className={`text text_type_main-medium mt-4 mb-8`}>{data.name}</p>
             <div className={ingretientsDetailsStyle.footer}>
                 <div className={ingretientsDetailsStyle.info}>
@@ -30,8 +26,7 @@ const IngredientsPage = () => {
                     <p className='text text_type_digits-default'>{data.carbohydrates}</p>
                 </div>
             </div>
-    </div>
-  )
+        </div>
+    )
 }
-
-export default IngredientsPage
+export default IngredientDetails

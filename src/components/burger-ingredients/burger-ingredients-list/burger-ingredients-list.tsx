@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import burgerIngredientsStyle from '../burger-ingredients.module.css'
 import BurgerIngredientsTitle from '../burger-ingredients-title/burger-ingredients-title';
 import BurgerIngredientsCard from '../burger-ingredients-card/burger-ingredients-card';
@@ -6,11 +6,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ACTIVE_TAB } from '../../../services/actions/burger-ingridients';
 import PropTypes from 'prop-types';
 
-function BurgerIngredientsList({location}) {
+interface IBurgerIngredientsList {
+    location: string;
+}
+
+const BurgerIngredientsList: FC<IBurgerIngredientsList> = ({location}) => {
     const dispatch = useDispatch();
-    const [scrollTop, setScrollTop] = useState(0);
-    const ingredients = useSelector((state) => state.ingridient.data)
-    const handleScroll = (event) => {
+    const [scrollTop, setScrollTop] = useState<number>(0);
+    const ingredients = useSelector((state: any) => state.ingridient.data)
+    const handleScroll = (event: any) => {
         if (event.currentTarget.scrollTop < 270) {
             dispatch({
                 type: ACTIVE_TAB,
@@ -34,12 +38,12 @@ function BurgerIngredientsList({location}) {
         <section className={burgerIngredientsStyle.ingredients_container} onScroll={handleScroll}>
             <BurgerIngredientsTitle>Булки</BurgerIngredientsTitle>
             <div className={burgerIngredientsStyle.card_container}>
-                {ingredients.filter((ing) => {
+                {ingredients.filter((ing: any) => {
                     if (ing.type === 'bun') {
                         return ing
                     }
                     return
-                }).map((ing, i) => {
+                }).map((ing: any, i: number) => {
                     return (
                         <BurgerIngredientsCard key={i} id={ing._id} ing={ing} location={location}/>
                     )
@@ -48,12 +52,12 @@ function BurgerIngredientsList({location}) {
             </div>
             <BurgerIngredientsTitle>Соусы</BurgerIngredientsTitle>
             <div className={burgerIngredientsStyle.card_container}>
-                {ingredients.filter((ing) => {
+                {ingredients.filter((ing: any) => {
                     if (ing.type === 'sauce') {
                         return ing
                     }
                     return
-                }).map((ing, i) => {
+                }).map((ing: any, i: number) => {
                     return (
                         <BurgerIngredientsCard key={i} id={ing._id} ing={ing} location={location}/>
                     )
@@ -62,12 +66,12 @@ function BurgerIngredientsList({location}) {
             </div>
             <BurgerIngredientsTitle>Начинки</BurgerIngredientsTitle>
             <div className={burgerIngredientsStyle.card_container}>
-                {ingredients.filter((ing) => {
+                {ingredients.filter((ing: any) => {
                     if (ing.type === 'main') {
                         return ing
                     }
                     return
-                }).map((ing, i) => {
+                }).map((ing: any, i: number) => {
                     return (
                         <BurgerIngredientsCard key={i} id={ing._id} ing={ing} location={location}/>
                     )
@@ -76,8 +80,5 @@ function BurgerIngredientsList({location}) {
             </div>
         </section>
     );
-}
-BurgerIngredientsList.propTypes = {
-  location: PropTypes.object,
 }
 export default BurgerIngredientsList;

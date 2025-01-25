@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { FC, useEffect, useMemo, useState } from 'react'
 import burgerIngredientsStyle from '../burger-ingredients.module.css'
 import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import PropTypes, { element } from 'prop-types';
@@ -10,13 +10,17 @@ import { useDrag } from 'react-dnd';
 import { SET_INGREDIENTS_PRICE } from '../../../services/actions/burger-constructor';
 import { Link, useNavigate } from 'react-router-dom';
 
-const BurgerIngredientsCard = ({ id, ing, location }) => {
+interface IBurgerIngredientsCard {
+    id: number;
+    ing: any;
+    location: string;
+}
+const BurgerIngredientsCard: FC<IBurgerIngredientsCard> = ({ id, ing, location }) => {
 
-    const [visible, setVisible] = useState(false);
-    const [info, setInfo] = useState();
+    const [visible, setVisible] = useState<boolean>(false);
     const dispatch = useDispatch();
-    const ingredients = useSelector(state => state.burgerConstructor)
-    function handleOpenModal(data) {
+    const ingredients = useSelector((state: any) => state.burgerConstructor)
+    function handleOpenModal(data: any) {
         dispatch({ type: INGRIDIENTS_DETAIL, value: data });   
     }
 
@@ -46,7 +50,7 @@ const BurgerIngredientsCard = ({ id, ing, location }) => {
         if (ing.type === 'bun' && ingredients.bun && id === ingredients.bun._id) {
             return 2
         }
-        return ingredients.ingredients.filter(item => item._id === id).length;
+        return ingredients.ingredients.filter((item: any) => item._id === id).length;
     }, [ingredients.bun, ingredients.ingredients, ingredients])
 
     const modal = () => (
@@ -65,10 +69,5 @@ const BurgerIngredientsCard = ({ id, ing, location }) => {
             </Link>
         </>
     )
-}
-BurgerIngredientsCard.propTypes = {
-    ing: PropTypes.object.isRequired,
-    id: PropTypes.string.isRequired,
-    location: PropTypes.object
 }
 export default BurgerIngredientsCard

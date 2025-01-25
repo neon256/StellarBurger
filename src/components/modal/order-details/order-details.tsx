@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import modalStyle from '../modal.module.css'
 
 const OrderDetails = () => {
-    const order = useSelector(state => state.order.order)
+    const order = useSelector((state: any) => state.order.order)
     return (
         <div className={modalStyle.order_details}>
             <p className='text text_type_digits-large'>{order}</p>

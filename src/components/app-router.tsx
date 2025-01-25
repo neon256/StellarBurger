@@ -10,7 +10,7 @@ import { useEffect } from "react"
 const AppRouter = () => {
     const location = useLocation()
     const background = location.state && location.state.background
-    const dispatch = useDispatch();
+    const dispatch: any = useDispatch();
     function resetToken(){
         if(!dispatch(getUser())){
             dispatch(postResetToken())

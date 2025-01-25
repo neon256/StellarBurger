@@ -5,10 +5,10 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { postForgotPassword } from '../../services/actions/reset-password'
 const ForgotPasswordPage = () => {
-  const dispatch = useDispatch();
+  const dispatch: any = useDispatch();
   const navigate = useNavigate();
-    const [emailValue, setEmailValue] = useState('')
-    const onChange = e => {
+    const [emailValue, setEmailValue] = useState<string>('')
+    const onChange = (e: any) => {
         setEmailValue(e.target.value)
     }
   return (
