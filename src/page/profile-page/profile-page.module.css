@@ -1,0 +1,23 @@
+.container{
+    display: flex;
+    width: 800px;
+    margin: 50px auto;
+}
+.nav__container{
+    display: flex;
+    flex-direction: column;
+}
+.link {
+    color: rgba(133, 133, 173, 1);
+    text-decoration: none;
+}
+.active {
+    color: rgba(242, 242, 243, 1);
+}
+.subtitle{
+    opacity: 0.4;
+    color: rgba(133, 133, 173, 1);
+}
+.left{
+    width: 320px;
+}

@@ -4,8 +4,9 @@ import BurgerIngredientsTitle from '../burger-ingredients-title/burger-ingredien
 import BurgerIngredientsCard from '../burger-ingredients-card/burger-ingredients-card';
 import { useDispatch, useSelector } from 'react-redux';
 import { ACTIVE_TAB } from '../../../services/actions/burger-ingridients';
+import PropTypes from 'prop-types';
 
-function BurgerIngredientsList() {
+function BurgerIngredientsList({location}) {
     const dispatch = useDispatch();
     const [scrollTop, setScrollTop] = useState(0);
     const ingredients = useSelector((state) => state.ingridient.data)
@@ -40,7 +41,7 @@ function BurgerIngredientsList() {
                     return
                 }).map((ing, i) => {
                     return (
-                        <BurgerIngredientsCard key={i} id={ing._id} ing={ing} />
+                        <BurgerIngredientsCard key={i} id={ing._id} ing={ing} location={location}/>
                     )
                 })
                 }
@@ -54,7 +55,7 @@ function BurgerIngredientsList() {
                     return
                 }).map((ing, i) => {
                     return (
-                        <BurgerIngredientsCard key={i} id={ing._id} ing={ing} />
+                        <BurgerIngredientsCard key={i} id={ing._id} ing={ing} location={location}/>
                     )
                 })
                 }
@@ -68,7 +69,7 @@ function BurgerIngredientsList() {
                     return
                 }).map((ing, i) => {
                     return (
-                        <BurgerIngredientsCard key={i} id={ing._id} ing={ing} />
+                        <BurgerIngredientsCard key={i} id={ing._id} ing={ing} location={location}/>
                     )
                 })
                 }
@@ -76,5 +77,7 @@ function BurgerIngredientsList() {
         </section>
     );
 }
-
+BurgerIngredientsList.propTypes = {
+  location: PropTypes.object,
+}
 export default BurgerIngredientsList;
