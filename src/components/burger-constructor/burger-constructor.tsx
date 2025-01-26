@@ -30,7 +30,20 @@ function BurgerConctructor() {
   const price = useMemo(() => {
     return (
       ingredients.ingredients.reduce(
-        (sum: number, cur: any) => sum + cur.price,
+        (sum: number, cur: {
+            _id:string;
+            name:string;
+            type:string;
+            proteins:number;
+            fat:number;
+            carbohydrates:number;
+            calories:number;
+            price:number;
+            image:string;
+            image_mobile:string;
+            image_large:string;
+            __v:number;
+        }) => sum + cur.price,
         0
       ) + (ingredients.bun ? ingredients.bun.price * 2 : 0)
     );
@@ -38,7 +51,20 @@ function BurgerConctructor() {
 
   const orderItems = useMemo(() => {
     if (ingredients.bun) {
-      const arr = ingredients.ingredients.map((item: any) => item._id);
+      const arr = ingredients.ingredients.map((item: {
+        _id:string;
+        name:string;
+        type:string;
+        proteins:number;
+        fat:number;
+        carbohydrates:number;
+        calories:number;
+        price:number;
+        image:string;
+        image_mobile:string;
+        image_large:string;
+        __v:number;
+    }) => item._id);
       arr.push(ingredients.bun._id);
       arr.unshift(ingredients.bun._id);
       return arr;
@@ -51,7 +77,7 @@ function BurgerConctructor() {
   function handleCloseModal() {
     setVisible(false);
   }
-  function createOrder(orderItems: number, handleOpenModal: any) {
+  function createOrder(orderItems: number, handleOpenModal: ()=> void) {
     if (!localStorage.getItem("accessToken")) {
       return navigate("/login");
     }

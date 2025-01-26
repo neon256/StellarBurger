@@ -8,10 +8,10 @@ import { useDispatch } from 'react-redux';
 import { DELETE_INGRIDIENTS_DETAIL } from '../../services/actions/ingredient-details';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-const modalRoot: any = document.getElementById('react-modals')
+const modalRoot = document.getElementById('react-modals') as HTMLElement;
 
 interface IModal {
-    onClose?: any;
+    onClose: ()=> void;
     children: ReactNode;
     header?: string;
 }
@@ -27,7 +27,7 @@ const Modal: FC<IModal> = ({ onClose, children, header }) => {
         }
         return onClose();
     }
-    const handleEscClick = (event: any) => {
+    const handleEscClick = (event: KeyboardEvent) => {
         if (event.key === 'Escape') {
             closeModal()
         }

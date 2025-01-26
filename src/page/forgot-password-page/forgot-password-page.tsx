@@ -1,5 +1,5 @@
 import { Button, EmailInput} from '@ya.praktikum/react-developer-burger-ui-components'
-import React, { useState } from 'react'
+import React, { ChangeEvent, useState } from 'react'
 import forgotStyle from './forgot-password-page.module.css'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
@@ -8,7 +8,7 @@ const ForgotPasswordPage = () => {
   const dispatch: any = useDispatch();
   const navigate = useNavigate();
     const [emailValue, setEmailValue] = useState<string>('')
-    const onChange = (e: any) => {
+    const onChange = (e: ChangeEvent<HTMLInputElement>) => {
         setEmailValue(e.target.value)
     }
   return (

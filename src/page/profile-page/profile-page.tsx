@@ -1,5 +1,5 @@
 import { Button, EmailInput, Input } from '@ya.praktikum/react-developer-burger-ui-components'
-import React, { act, useEffect, useState } from 'react'
+import React, { act, ChangeEvent, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import profileStyle from './profile-page.module.css'
 import { useDispatch, useSelector } from 'react-redux'
@@ -16,7 +16,7 @@ const ProfilePage = () => {
     const [passwordDisabled, setPasswordDisabled] = useState<boolean>(true);
     const [active, setActive] = useState(false);
     const dispatch: any = useDispatch();
-    const onChange = (e: any) => {
+    const onChange = (e: ChangeEvent<HTMLInputElement>) => {
         setEmailValue(e.target.value)
         setActive(true)
     }

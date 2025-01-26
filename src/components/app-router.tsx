@@ -39,7 +39,7 @@ const AppRouter = () => {
             {background && (
                 <Routes>
                     <Route path="/ingredients/:id" element={
-                        <Modal header='Детали ингредиента'>
+                        <Modal header='Детали ингредиента' onClose={()=>undefined}>
                             <IngredientDetails />
                         </Modal>
                     } />

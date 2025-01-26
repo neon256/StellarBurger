@@ -1,5 +1,5 @@
 import { Button, EmailInput, Input } from '@ya.praktikum/react-developer-burger-ui-components'
-import React, { useRef, useState } from 'react'
+import React, { ChangeEvent, useRef, useState } from 'react'
 import authStyle from './auth-page.module.css'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
@@ -10,7 +10,7 @@ type TInputPassword = "password" | "text" | "email" | "undefined";
 
 const AuthPage = () => {
     const [emailValue, setEmailValue] = useState<string>('')
-    const onChange = (e: any) => {
+    const onChange = (e: ChangeEvent<HTMLInputElement>) => {
         setEmailValue(e.target.value)
     }
     const [value, setValue] = useState<string>('')

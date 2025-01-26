@@ -6,7 +6,7 @@ import BurgerIngredientsNav from './burger-ingredients-nav/burger-ingredients-na
 import PropTypes, { arrayOf } from 'prop-types'
 
 interface IBurgerIngredients {
-  location: any;
+  location: {pathname: string};
 } 
 
 const BurgerIngredients: FC<IBurgerIngredients> = ({location}) => {

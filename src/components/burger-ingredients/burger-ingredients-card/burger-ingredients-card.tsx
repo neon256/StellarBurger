@@ -11,20 +11,46 @@ import { SET_INGREDIENTS_PRICE } from '../../../services/actions/burger-construc
 import { Link, useNavigate } from 'react-router-dom';
 
 interface IBurgerIngredientsCard {
-    id: number;
-    ing: any;
-    location: string;
+    id: string;
+    ing: {
+        _id:string;
+        name:string;
+        type:string;
+        proteins:number;
+        fat:number;
+        carbohydrates:number;
+        calories:number;
+        price:number;
+        image:string;
+        image_mobile:string;
+        image_large:string;
+        __v:number;
+    };
+    location: {pathname: string};
 }
 const BurgerIngredientsCard: FC<IBurgerIngredientsCard> = ({ id, ing, location }) => {
 
     const [visible, setVisible] = useState<boolean>(false);
     const dispatch = useDispatch();
     const ingredients = useSelector((state: any) => state.burgerConstructor)
-    function handleOpenModal(data: any) {
+    function handleOpenModal(data: {
+        _id:string;
+        name:string;
+        type:string;
+        proteins:number;
+        fat:number;
+        carbohydrates:number;
+        calories:number;
+        price:number;
+        image:string;
+        image_mobile:string;
+        image_large:string;
+        __v:number;
+    }) {
         dispatch({ type: INGRIDIENTS_DETAIL, value: data });   
     }
 
-    function handleCloseModal() {
+    function handleCloseModal(): void {
         dispatch({ type: DELETE_INGRIDIENTS_DETAIL })
         setVisible(false)
     }
@@ -50,7 +76,20 @@ const BurgerIngredientsCard: FC<IBurgerIngredientsCard> = ({ id, ing, location }
         if (ing.type === 'bun' && ingredients.bun && id === ingredients.bun._id) {
             return 2
         }
-        return ingredients.ingredients.filter((item: any) => item._id === id).length;
+        return ingredients.ingredients.filter((item: {
+            _id:string;
+            name:string;
+            type:string;
+            proteins:number;
+            fat:number;
+            carbohydrates:number;
+            calories:number;
+            price:number;
+            image:string;
+            image_mobile:string;
+            image_large:string;
+            __v:number;
+        }) => item._id === id).length;
     }, [ingredients.bun, ingredients.ingredients, ingredients])
 
     const modal = () => (

@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 
 interface IModalHeader {
   children?: string;
-  onClose: any;
+  onClose: ()=> void;
 }
 
 const ModalHeader: FC<IModalHeader> = ({children, onClose}) => {

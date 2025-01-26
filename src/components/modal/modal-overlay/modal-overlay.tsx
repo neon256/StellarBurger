@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 interface IModalOverlay {
-  onClose: any;
+  onClose: ()=> void;
 }
 
 const ModalOverlay: FC<IModalOverlay> = ({ onClose }) => {
