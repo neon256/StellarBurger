@@ -4,8 +4,8 @@ import { useSelector } from 'react-redux'
 import burgerIngredientsStyle from '../burger-ingredients.module.css'
 
 const BurgerIngredientsNav = () => {
-    const [current, setCurrent] = React.useState('one')
-    const tab = useSelector(state => state.tab.tab)
+    const [current, setCurrent] = React.useState<string>('one')
+    const tab = useSelector((state: any) => state.tab.tab)
     return (
         <div  className={`mb-10  ${burgerIngredientsStyle.flex}`}>
             <Tab value="one" active={tab === 'one'} onClick={setCurrent}>

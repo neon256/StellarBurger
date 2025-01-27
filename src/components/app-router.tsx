@@ -10,7 +10,7 @@ import { useEffect } from "react"
 const AppRouter = () => {
     const location = useLocation()
     const background = location.state && location.state.background
-    const dispatch = useDispatch();
+    const dispatch: any = useDispatch();
     function resetToken(){
         if(!dispatch(getUser())){
             dispatch(postResetToken())
@@ -39,7 +39,7 @@ const AppRouter = () => {
             {background && (
                 <Routes>
                     <Route path="/ingredients/:id" element={
-                        <Modal header='Детали ингредиента'>
+                        <Modal header='Детали ингредиента' onClose={()=>undefined}>
                             <IngredientDetails />
                         </Modal>
                     } />

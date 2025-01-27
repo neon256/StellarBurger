@@ -9,10 +9,10 @@ import update from 'immutability-helper'
 import { v4 as uuidv4 } from 'uuid';
 
 const BurgerConstructorList = () => {
-    const ingredients = useSelector(state => state.burgerConstructor);
+    const ingredients = useSelector((state: any) => state.burgerConstructor);
     const dispatch = useDispatch()
 
-    function onDropHandler(item) {
+    function onDropHandler(item: any) {
         if (item.type === 'bun') {
             dispatch({
                 type: BUN_SAVE,
@@ -36,7 +36,7 @@ const BurgerConstructorList = () => {
         }
     }, [])
     const moveIngredient = useCallback(
-        (dragIndex, hoverIndex) => {
+        (dragIndex: number, hoverIndex: number) => {
             dispatch({
                 type: CHANGE_INGREDIENTS_POSITION,
                 change: update(ingredients.ingredients, {
@@ -78,7 +78,7 @@ const BurgerConstructorList = () => {
 
                 <li>
                     <ul className={burgerConstructorStyle.ingredients_main_container}>
-                        {ingredients.ingredients.map((ing, index) => {
+                        {ingredients.ingredients.map((ing: any, index: number) => {
                             return <BurgerConstructorListElement
                                 key={ing.uuid}
                                 ing={ing}
@@ -104,7 +104,6 @@ const BurgerConstructorList = () => {
 
                 <li className="mr-4">
                     <ConstructorElement
-                        className='mr-4'
                         type="bottom"
                         isLocked={true}
                         text={`${ingredients.bun.name} (низ)`}

@@ -10,8 +10,8 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const AppHeader = () => {
-  const token = localStorage.getItem('accessToken')
-  const [profile, setProfile] = useState('')
+  const token: string | null = localStorage.getItem('accessToken')
+  const [profile, setProfile] = useState<string>('')
   useEffect(()=>{
     setProfile(token ? '/profile' : '/login')
   }, [token])

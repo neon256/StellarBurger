@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { FC, ReactNode, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import ModalOverlay from './modal-overlay/modal-overlay'
 import ModalHeader from './modal-header/modal-header';
@@ -8,9 +8,15 @@ import { useDispatch } from 'react-redux';
 import { DELETE_INGRIDIENTS_DETAIL } from '../../services/actions/ingredient-details';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-const modalRoot = document.getElementById('react-modals')
+const modalRoot = document.getElementById('react-modals') as HTMLElement;
 
-function Modal({ onClose, children, header }) {
+interface IModal {
+    onClose: ()=> void;
+    children: ReactNode;
+    header?: string;
+}
+
+const Modal: FC<IModal> = ({ onClose, children, header }) => {
     const navigate = useNavigate()
     const dispatch = useDispatch();
     const location = useLocation();
@@ -21,7 +27,7 @@ function Modal({ onClose, children, header }) {
         }
         return onClose();
     }
-    const handleEscClick = (event) => {
+    const handleEscClick = (event: KeyboardEvent) => {
         if (event.key === 'Escape') {
             closeModal()
         }
@@ -45,10 +51,5 @@ function Modal({ onClose, children, header }) {
         modalRoot
     );
 
-}
-Modal.propTypes = {
-    onClose: PropTypes.func,
-    children: PropTypes.object,
-    header: PropTypes.string
 }
 export default Modal

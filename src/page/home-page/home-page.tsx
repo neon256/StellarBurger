@@ -8,7 +8,7 @@ import { DndProvider } from "react-dnd";
 import { useLocation } from "react-router-dom";
 
 function HomePage() {
-    const location = useLocation()
+    const location: { pathname: string} = useLocation()
     return (
         <main className={appMainStyle.container}>
             <DndProvider backend={HTML5Backend}>

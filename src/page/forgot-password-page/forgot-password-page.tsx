@@ -1,14 +1,14 @@
 import { Button, EmailInput} from '@ya.praktikum/react-developer-burger-ui-components'
-import React, { useState } from 'react'
+import React, { ChangeEvent, useState } from 'react'
 import forgotStyle from './forgot-password-page.module.css'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { postForgotPassword } from '../../services/actions/reset-password'
 const ForgotPasswordPage = () => {
-  const dispatch = useDispatch();
+  const dispatch: any = useDispatch();
   const navigate = useNavigate();
-    const [emailValue, setEmailValue] = useState('')
-    const onChange = e => {
+    const [emailValue, setEmailValue] = useState<string>('')
+    const onChange = (e: ChangeEvent<HTMLInputElement>) => {
         setEmailValue(e.target.value)
     }
   return (
