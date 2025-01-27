@@ -19,6 +19,7 @@ import {
   POST_INGRIDIENTS_SUCCESS,
 } from "../../services/actions/order";
 import { useNavigate } from "react-router-dom";
+import { IBurgerIngredients } from "../../utils/ingredients-interface";
 
 function BurgerConctructor() {
   const [visible, setVisible] = useState<boolean>(false);
@@ -30,20 +31,7 @@ function BurgerConctructor() {
   const price = useMemo(() => {
     return (
       ingredients.ingredients.reduce(
-        (sum: number, cur: {
-            _id:string;
-            name:string;
-            type:string;
-            proteins:number;
-            fat:number;
-            carbohydrates:number;
-            calories:number;
-            price:number;
-            image:string;
-            image_mobile:string;
-            image_large:string;
-            __v:number;
-        }) => sum + cur.price,
+        (sum: number, cur: IBurgerIngredients) => sum + cur.price,
         0
       ) + (ingredients.bun ? ingredients.bun.price * 2 : 0)
     );
@@ -51,20 +39,7 @@ function BurgerConctructor() {
 
   const orderItems = useMemo(() => {
     if (ingredients.bun) {
-      const arr = ingredients.ingredients.map((item: {
-        _id:string;
-        name:string;
-        type:string;
-        proteins:number;
-        fat:number;
-        carbohydrates:number;
-        calories:number;
-        price:number;
-        image:string;
-        image_mobile:string;
-        image_large:string;
-        __v:number;
-    }) => item._id);
+      const arr = ingredients.ingredients.map((item:IBurgerIngredients) => item._id);
       arr.push(ingredients.bun._id);
       arr.unshift(ingredients.bun._id);
       return arr;

@@ -2,25 +2,13 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import ingretientsDetailsStyle from './ingredients-page.module.css'
+import { IBurgerIngredients } from '../../utils/ingredients-interface'
 
 
 const IngredientsPage = () => {
     const ingredients = useSelector((state: any) => state.ingridient.data)
     const {id} = useParams()
-    const data = ingredients.find((item: {
-        _id:string;
-        name:string;
-        type:string;
-        proteins:number;
-        fat:number;
-        carbohydrates:number;
-        calories:number;
-        price:number;
-        image:string;
-        image_mobile:string;
-        image_large:string;
-        __v:number;
-    }) => item._id == id);
+    const data = ingredients.find((item: IBurgerIngredients) => item._id == id);
     console.log(data)
   return (
     <div className={ingretientsDetailsStyle.container}>

@@ -5,6 +5,7 @@ import BurgerIngredientsCard from "../burger-ingredients-card/burger-ingredients
 import { useDispatch, useSelector } from "react-redux";
 import { ACTIVE_TAB } from "../../../services/actions/burger-ingridients";
 import PropTypes from "prop-types";
+import { IBurgerIngredients } from "../../../utils/ingredients-interface";
 
 interface IBurgerIngredientsList {
   location: { pathname: string };
@@ -45,20 +46,7 @@ const BurgerIngredientsList: FC<IBurgerIngredientsList> = ({ location }) => {
       <BurgerIngredientsTitle>Булки</BurgerIngredientsTitle>
       <div className={burgerIngredientsStyle.card_container}>
         {ingredients
-          .filter((ing: {
-            _id:string;
-            name:string;
-            type:string;
-            proteins:number;
-            fat:number;
-            carbohydrates:number;
-            calories:number;
-            price:number;
-            image:string;
-            image_mobile:string;
-            image_large:string;
-            __v:number;
-        }) => {
+          .filter((ing: IBurgerIngredients) => {
             if (ing.type === "bun") {
               return ing;
             }
@@ -66,20 +54,7 @@ const BurgerIngredientsList: FC<IBurgerIngredientsList> = ({ location }) => {
           })
           .map(
             (
-              ing: {
-                _id: string;
-                name: string;
-                type: string;
-                proteins: number;
-                fat: number;
-                carbohydrates: number;
-                calories: number;
-                price: number;
-                image: string;
-                image_mobile: string;
-                image_large: string;
-                __v: number;
-              },
+              ing: IBurgerIngredients,
               i: number
             ) => {
               return (
@@ -96,20 +71,7 @@ const BurgerIngredientsList: FC<IBurgerIngredientsList> = ({ location }) => {
       <BurgerIngredientsTitle>Соусы</BurgerIngredientsTitle>
       <div className={burgerIngredientsStyle.card_container}>
         {ingredients
-          .filter((ing: {
-            _id:string;
-            name:string;
-            type:string;
-            proteins:number;
-            fat:number;
-            carbohydrates:number;
-            calories:number;
-            price:number;
-            image:string;
-            image_mobile:string;
-            image_large:string;
-            __v:number;
-        }) => {
+          .filter((ing: IBurgerIngredients) => {
             if (ing.type === "sauce") {
               return ing;
             }
@@ -117,20 +79,7 @@ const BurgerIngredientsList: FC<IBurgerIngredientsList> = ({ location }) => {
           })
           .map(
             (
-              ing: {
-                _id: string;
-                name: string;
-                type: string;
-                proteins: number;
-                fat: number;
-                carbohydrates: number;
-                calories: number;
-                price: number;
-                image: string;
-                image_mobile: string;
-                image_large: string;
-                __v: number;
-              },
+              ing: IBurgerIngredients,
               i: number
             ) => {
               return (
@@ -147,20 +96,7 @@ const BurgerIngredientsList: FC<IBurgerIngredientsList> = ({ location }) => {
       <BurgerIngredientsTitle>Начинки</BurgerIngredientsTitle>
       <div className={burgerIngredientsStyle.card_container}>
         {ingredients
-          .filter((ing: {
-            _id:string;
-            name:string;
-            type:string;
-            proteins:number;
-            fat:number;
-            carbohydrates:number;
-            calories:number;
-            price:number;
-            image:string;
-            image_mobile:string;
-            image_large:string;
-            __v:number;
-        }) => {
+          .filter((ing: IBurgerIngredients) => {
             if (ing.type === "main") {
               return ing;
             }
@@ -168,20 +104,7 @@ const BurgerIngredientsList: FC<IBurgerIngredientsList> = ({ location }) => {
           })
           .map(
             (
-              ing: {
-                _id: string;
-                name: string;
-                type: string;
-                proteins: number;
-                fat: number;
-                carbohydrates: number;
-                calories: number;
-                price: number;
-                image: string;
-                image_mobile: string;
-                image_large: string;
-                __v: number;
-              },
+              ing: IBurgerIngredients,
               i: number
             ) => {
               return (

@@ -9,7 +9,6 @@ import { useLocation } from "react-router-dom";
 
 function HomePage() {
     const location: { pathname: string} = useLocation()
-    console.log(location)
     return (
         <main className={appMainStyle.container}>
             <DndProvider backend={HTML5Backend}>

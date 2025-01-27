@@ -17,7 +17,6 @@ function App() {
   if (load) {
     return null;
   }
-  console.log(ingridients);
   return (
     <BrowserRouter>
       <AppHeader />
