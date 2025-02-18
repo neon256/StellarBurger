@@ -6,7 +6,7 @@ import {
 import React, { FormEvent, useRef, useState } from "react";
 import resetStyle from "./reset-password-page.module.css";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+
 import { postResetPassword } from "../../services/actions/reset-password";
 import { TICons } from "@ya.praktikum/react-developer-burger-ui-components/dist/ui/icons";
 import { AppDispatch } from "../../services/type/data";

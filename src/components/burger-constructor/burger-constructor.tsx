@@ -10,7 +10,7 @@ import BurgerConstructorList from "./burger-constructor-list/burger-constructor-
 import PropTypes, { any, arrayOf } from "prop-types";
 import Modal from "../modal/modal";
 import OrderDetails from "../modal/order-details/order-details";
-import { useDispatch, useSelector } from "react-redux";
+
 import { useDrop } from "react-dnd";
 import {
   order,

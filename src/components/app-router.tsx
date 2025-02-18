@@ -7,22 +7,23 @@ import {
 import Error from "./Error";
 import Modal from "./modal/modal";
 import IngredientDetails from "./modal/ingredient-details/ingredient-details";
-import { useDispatch } from "react-redux";
+
 import { getUser, postResetToken } from "../services/actions/user";
-import { createElement, useEffect, useState } from "react";
+import { createElement, ReactElement, useEffect, useState } from "react";
 import FeedById from "../page/feed-by-id/feed-by-id";
 import { AppDispatch } from "../services/type/data";
 import { useAppDispatch } from "../utils/hook";
+import ProtectedRoute from "../services/router/protected-route";
 
 const AppRouter = () => {
   const location = useLocation();
   const background = location.state && location.state.background;
-  const dispatch= useAppDispatch();
-  const [load, setLoad] = useState(false)
+  const dispatch = useAppDispatch();
+  const [load, setLoad] = useState(false);
 
   useEffect(() => {
-    dispatch(getUser(setLoad))
-    if(load) {
+    dispatch(getUser(setLoad));
+    if (load) {
       dispatch(postResetToken());
     }
   }, []);
@@ -33,7 +34,9 @@ const AppRouter = () => {
           privateRoutes.map((rout) => (
             <Route
               path={rout.path}
-              element={createElement(rout.component)}
+              element={
+                <ProtectedRoute>{createElement(rout.component)}</ProtectedRoute>
+              }
               key={rout.path}
             />
           ))}
@@ -57,9 +60,8 @@ const AppRouter = () => {
             />
           ))}
         <Route path="*" element={<Error />} />
-        
       </Routes>
-      
+
       {background && (
         <Routes>
           <Route
@@ -74,7 +76,7 @@ const AppRouter = () => {
             path="/feed/:id"
             element={
               <Modal header="" onClose={() => undefined}>
-                <FeedById/>
+                <FeedById />
               </Modal>
             }
           />
@@ -86,7 +88,7 @@ const AppRouter = () => {
             path="/profile/orders/:id"
             element={
               <Modal header="" onClose={() => undefined}>
-                <FeedById/>
+                <FeedById />
               </Modal>
             }
           />
@@ -97,4 +99,3 @@ const AppRouter = () => {
 };
 
 export default AppRouter;
-

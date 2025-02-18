@@ -2,7 +2,7 @@ import React, { FC, useState } from "react";
 import burgerIngredientsStyle from "../burger-ingredients.module.css";
 import BurgerIngredientsTitle from "../burger-ingredients-title/burger-ingredients-title";
 import BurgerIngredientsCard from "../burger-ingredients-card/burger-ingredients-card";
-import { useDispatch, useSelector } from "react-redux";
+
 
 import PropTypes from "prop-types";
 import { IBurgerIngredients } from "../../../utils/ingredients-interface";

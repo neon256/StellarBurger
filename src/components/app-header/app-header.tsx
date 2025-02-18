@@ -7,7 +7,6 @@ import {
 import React, { useEffect, useState } from "react";
 import headerStyles from "./app-header.module.css";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 
 const AppHeader = () => {
   const token: string | null = localStorage.getItem('accessToken')

@@ -6,7 +6,7 @@ import {
 import React, { act, ChangeEvent, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import profileStyle from "./profile-page.module.css";
-import { useDispatch, useSelector } from "react-redux";
+
 import {
   getUser,
   patchUser,

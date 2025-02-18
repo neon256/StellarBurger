@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+
 import { checkResponse } from "../../utils/chekResponse";
 import { BASE_URL } from "../../utils/Api";
 import {
@@ -12,6 +12,7 @@ import {
 import { access } from "fs";
 import { AppDispatch, IOrder } from "../type/data";
 import { SyntheticEvent } from "react";
+import { useAppDispatch } from "../../utils/hook";
 
 export interface IPostIngredientsRequestAction {
   readonly type: typeof POST_INGRIDIENTS_REQUEST;
@@ -45,7 +46,7 @@ export type TOrder =
 const URL: string = `${BASE_URL}/orders`;
 
 export function order(orderItems: string[], handleOpenModal?: () => void) {
-  return function (dispatch: AppDispatch) {
+  return function (dispatch = useAppDispatch()) {
     dispatch({ type: POST_INGRIDIENTS_REQUEST });
     const res = fetch(URL, {
       method: "POST",
@@ -71,7 +72,7 @@ export function order(orderItems: string[], handleOpenModal?: () => void) {
 }
 
 export function getOrder(id: string) {
-  return function (dispatch: AppDispatch) {
+  return function (dispatch = useAppDispatch()) {
     dispatch({ type: GET_ORDER_REQUEST });
     console.log(id)
     const res = fetch(`${URL}/${id}`, {

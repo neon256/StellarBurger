@@ -1,5 +1,6 @@
 import { BASE_URL } from "../../utils/Api";
 import { checkResponse } from "../../utils/chekResponse";
+import { useAppDispatch } from "../../utils/hook";
 import {
   GET_USER_FAILED,
   GET_USER_REQUEST,
@@ -96,7 +97,7 @@ export type TUser =
   | IPostResetTokenSuccessAction;
 
 export function postAuth(email: string, password: string, navigate: (children:string)=>void, from: string) {
-  return function (dispatch: AppDispatch) {
+  return function (dispatch = useAppDispatch()) {
     dispatch({ type: POST_AUTH_REQUEST });
     const res = fetch(`${BASE_URL}/auth/login`, {
       method: "POST",
@@ -126,7 +127,7 @@ export function postRegister(
   name: string,
   navigate: (children:string)=>void
 ) {
-  return function (dispatch: AppDispatch) {
+  return function (dispatch = useAppDispatch()) {
     dispatch({ type: POST_REGISTER_REQUEST });
     const res = fetch(`${BASE_URL}/auth/register`, {
       method: "POST",
@@ -156,7 +157,7 @@ export function getUser(
   setNameValue?: (children:string)=>void,
   setEmailValue?: (children:string)=>void
 ) {
-  return function (dispatch: AppDispatch) {
+  return function (dispatch = useAppDispatch()) {
     dispatch({ type: GET_USER_REQUEST });
     const res = fetch(`${BASE_URL}/auth/user`, {
       method: "GET",
@@ -196,7 +197,7 @@ export function patchUser(
   setNameValue: (children:string)=>void,
   setEmailValue: (children:string)=>void
 ) {
-  return function (dispatch: AppDispatch) {
+  return function (dispatch = useAppDispatch()) {
     dispatch({ type: PATCH_USER_REQUEST });
     const res = fetch(`${BASE_URL}/auth/user`, {
       method: "PATCH",
@@ -224,7 +225,7 @@ export function patchUser(
 }
 
 export function postResetToken() {
-  return function (dispatch: AppDispatch) {
+  return function (dispatch = useAppDispatch()) {
     dispatch({ type: POST_RESET_TOKEN_REQUEST });
     const res = fetch(`${BASE_URL}/auth/token`, {
       method: "POST",

@@ -7,7 +7,7 @@ import { TResetPassword } from "../actions/reset-password";
 import { TUser } from "../actions/user";
 import { store } from "../reducers";
 import { ThunkAction } from "redux-thunk";
-import { useSelector } from "react-redux";
+
 
 export interface IIngredients {
   _id: string;

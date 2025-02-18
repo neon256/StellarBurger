@@ -1,5 +1,5 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+
 import modalStyle from '../modal.module.css'
 import { RootState } from '../../../services/type/data'
 import { useAppSelector } from '../../../utils/hook'

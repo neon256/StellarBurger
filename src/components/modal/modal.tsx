@@ -4,7 +4,7 @@ import ModalOverlay from './modal-overlay/modal-overlay'
 import ModalHeader from './modal-header/modal-header';
 import modalStyle from './modal.module.css'
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
+
 import { DELETE_INGRIDIENTS_DETAIL } from '../../services/constants/ingredient-details';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AppDispatch } from '../../services/type/data';

@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from 'react'
 import burgerConstructorStyle from '../burger-constructor.module.css'
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useDispatch, useSelector } from 'react-redux';
+
 import { useDrag, useDrop } from 'react-dnd';
 import { BUN_SAVE, CHANGE_INGREDIENTS_POSITION, INGREDIENTS_SAVE } from '../../../services/constants/burger-constructor';
 import BurgerConstructorListElement from './burger-constructor-list-element';

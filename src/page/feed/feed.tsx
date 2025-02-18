@@ -2,7 +2,7 @@ import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components
 import React, { useEffect } from "react";
 import style from "./feed.module.css";
 import FeedCard from "../../components/feed-card/feed-card";
-import { useDispatch, useSelector } from "react-redux";
+
 import {
   WEBSOCKET_CONNECT,
   WEBSOCKET_DISCONNECT,

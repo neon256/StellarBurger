@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import ingretientsDetailsStyle from './ingredient-details.module.css'
 import PropTypes from 'prop-types'
-import { useDispatch, useSelector } from 'react-redux'
+
 import { RootState } from '../../../services/type/data'
 import { INGRIDIENTS_DETAIL } from '../../../services/constants/ingredient-details'
 import { useParams } from 'react-router-dom'

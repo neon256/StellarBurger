@@ -1,5 +1,6 @@
 import { BASE_URL } from "../../utils/Api";
 import { checkResponse } from "../../utils/chekResponse";
+import { useAppDispatch } from "../../utils/hook";
 import {
   ACTIVE_TAB,
   CHANGE_TAB,
@@ -43,7 +44,7 @@ export type TBurgerIngredients =
 const URL: string = `${BASE_URL}/ingredients`;
 
 export function getData(setLoad: (children: boolean)=>void) {
-  return function (dispatch: AppDispatch) {
+  return function (dispatch = useAppDispatch()) {
     dispatch({ type: GET_INGRIDIENTS_REQUEST });
     const res = fetch(URL)
       .then(checkResponse)

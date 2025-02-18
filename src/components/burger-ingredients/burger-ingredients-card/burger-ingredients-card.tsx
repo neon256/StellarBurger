@@ -4,7 +4,7 @@ import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-c
 import PropTypes, { element } from 'prop-types';
 import Modal from '../../modal/modal';
 import IngredientDetails from '../../modal/ingredient-details/ingredient-details';
-import { useDispatch, useSelector } from 'react-redux';
+
 import { DELETE_INGRIDIENTS_DETAIL, INGRIDIENTS_DETAIL } from '../../../services/constants/ingredient-details';
 import { useDrag } from 'react-dnd';
 import { SET_INGREDIENTS_PRICE } from '../../../services/constants/burger-constructor';

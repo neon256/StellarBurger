@@ -3,7 +3,7 @@ import style from "./feed-by-id.module.css";
 import { AppDispatch, IIngredients, IOrderIngredients, RootState } from "../../services/type/data";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useNavigate, useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+
 import { getOrder } from "../../services/actions/order";
 import { useAppDispatch, useAppSelector } from "../../utils/hook";
 

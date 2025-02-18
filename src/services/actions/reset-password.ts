@@ -1,5 +1,6 @@
 import { BASE_URL } from "../../utils/Api";
 import { checkResponse } from "../../utils/chekResponse";
+import { useAppDispatch } from "../../utils/hook";
 import { POST_FORGOT_PASSWORD_FAILED, POST_FORGOT_PASSWORD_REQUEST, POST_FORGOT_PASSWORD_SUCCESS, POST_RESET_PASSWORD_FAILED, POST_RESET_PASSWORD_REQUEST, POST_RESET_PASSWORD_SUCCESS } from "../constants/reset-password";
 import { AppDispatch } from "../type/data";
 
@@ -41,7 +42,7 @@ export type TResetPassword =
     | IPostResetPasswordSuccessAction
 
 export function postForgotPassword(email: string, navigate: (children:string)=>void){
-    return function (dispatch: AppDispatch){
+    return function (dispatch = useAppDispatch()){
         dispatch({type: POST_FORGOT_PASSWORD_REQUEST})
         const res = fetch(`${BASE_URL}/password-reset`, {
             method: 'POST',
@@ -65,7 +66,7 @@ export function postForgotPassword(email: string, navigate: (children:string)=>v
 }
 
 export function postResetPassword(password: string, token: string, navigate: (children:string)=>void){
-    return function (dispatch: AppDispatch){
+    return function (dispatch = useAppDispatch()){
         dispatch({type: POST_RESET_PASSWORD_REQUEST})
         const res = fetch(`${BASE_URL}/password-reset/reset`, {
             method: 'POST',

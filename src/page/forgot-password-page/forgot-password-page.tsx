@@ -5,12 +5,12 @@ import {
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import forgotStyle from "./forgot-password-page.module.css";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+
 import { postForgotPassword } from "../../services/actions/reset-password";
-import { AppDispatch } from "../../services/type/data";
+
 import { useAppDispatch } from "../../utils/hook";
 const ForgotPasswordPage = () => {
-  const dispatch: AppDispatch = useAppDispatch();
+  const dispatch= useAppDispatch();
   const navigate = useNavigate();
   const [emailValue, setEmailValue] = useState<string>("");
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {

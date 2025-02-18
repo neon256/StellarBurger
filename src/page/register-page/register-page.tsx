@@ -6,7 +6,7 @@ import {
 import React, { ChangeEvent, FormEvent, useRef, useState } from "react";
 import regStyle from "./register-page.module.css";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+
 import { postRegister } from "../../services/actions/user";
 import { TICons } from "@ya.praktikum/react-developer-burger-ui-components/dist/ui/icons";
 import { AppDispatch } from "../../services/type/data";

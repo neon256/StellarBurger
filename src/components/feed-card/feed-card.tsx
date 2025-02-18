@@ -10,7 +10,7 @@ import {
   IOrderIngredients,
   RootState,
 } from "../../services/type/data";
-import { useSelector } from "react-redux";
+
 import { Link, useNavigate } from "react-router-dom";
 import { number } from "prop-types";
 import { useAppSelector } from "../../utils/hook";

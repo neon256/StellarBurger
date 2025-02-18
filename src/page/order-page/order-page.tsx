@@ -2,10 +2,9 @@ import React, { useEffect } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import style from './order-page.module.css'
 import FeedCard from '../../components/feed-card/feed-card';
-import { useDispatch, useSelector } from 'react-redux';
+
 import { ORDERS_WEBSOCKET_CONNECT, WEBSOCKET_DISCONNECT, WEBSOCKET_MESSAGE_RECEIVED } from '../../services/constants/ws';
-import { AppDispatch, RootState } from '../../services/type/data';
-import { useAppDispatch } from '../../utils/hook';
+import { useAppDispatch, useAppSelector } from '../../utils/hook';
 
 const OrderPage = () => {
     const navigate = useNavigate();
@@ -16,7 +15,7 @@ const OrderPage = () => {
         window.location.reload()
     }
     const dispatch= useAppDispatch();
-    const data = useSelector((state: RootState) => state.ws);
+    const data = useAppSelector((state) => state.ws);
     useEffect(() => {
       dispatch({ type: ORDERS_WEBSOCKET_CONNECT });
       if (data.isConnecting == true) {
@@ -39,7 +38,10 @@ const OrderPage = () => {
             изменить свои персональные данные</p>
     </div>
     <div className={style.card__container}>
-       <FeedCard data={data.orders.orders} location={location}  link={'/profile/orders/'}/>
+      {data.orders.orders &&
+        <FeedCard data={data.orders.orders} location={location}  link={'/profile/orders/'}/>
+      }
+        
     </div>
 </div>
   )

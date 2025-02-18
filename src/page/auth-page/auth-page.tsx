@@ -6,10 +6,11 @@ import {
 import React, { ChangeEvent, FormEvent, useRef, useState } from "react";
 import authStyle from "./auth-page.module.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+
 import { postAuth } from "../../services/actions/user";
 import { TICons } from "@ya.praktikum/react-developer-burger-ui-components/dist/ui/icons";
-import { AppDispatch } from "../../services/type/data";
+
+import { useAppDispatch } from "../../utils/hook";
 
 type TInputPassword = "password" | "text" | "email" | "undefined";
 
@@ -35,7 +36,7 @@ const AuthPage = () => {
     setIcon(icon === "ShowIcon" ? "HideIcon" : "ShowIcon");
   };
   const navigate = useNavigate();
-  const dispatch: AppDispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   return (
     <div className={authStyle.container}>
