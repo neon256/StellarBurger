@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { postAuth } from '../../services/actions/user'
 import { TICons } from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/icons'
+import { AppDispatch } from '../../services/type/data'
 
 type TInputPassword = "password" | "text" | "email" | "undefined";
 
@@ -22,7 +23,7 @@ const AuthPage = () => {
         setIcon(icon === 'ShowIcon' ? 'HideIcon' : 'ShowIcon');
     }
     const navigate = useNavigate();
-    const dispatch: any = useDispatch();
+    const dispatch: AppDispatch = useDispatch();
     
     return (
         <div className={authStyle.container}>

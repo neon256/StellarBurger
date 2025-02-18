@@ -1,13 +1,16 @@
 import { act } from "react";
-import {
-  BUN_SAVE,
-  CHANGE_INGREDIENTS_POSITION,
-  INGREDIENTS_REMOVE,
-  INGREDIENTS_SAVE,
-  SET_INGREDIENTS_PRICE,
-} from "../actions/burger-constructor";
+import { BUN_SAVE, CHANGE_INGREDIENTS_POSITION, INGREDIENTS_REMOVE, INGREDIENTS_SAVE, SET_INGREDIENTS_PRICE } from "../constants/burger-constructor";
+import { IIngredients } from "../type/data";
+import { TBurgerConstructorActions } from "../actions/burger-constructor";
 
-const initialConstuctor = {
+type TInitialContructor = {
+  bun: IIngredients | null,
+  ingredients: Array<IIngredients>,
+  isDraggingBun: boolean | IIngredients,
+  isDraggingIng: boolean| Array<IIngredients>,
+}
+
+const initialConstuctor: TInitialContructor = {
   bun: null,
   ingredients: [],
 
@@ -15,7 +18,7 @@ const initialConstuctor = {
   isDraggingIng: false,
 };
 
-export const burgerConstructor = (state = initialConstuctor, action) => {
+export const burgerConstructor = (state = initialConstuctor, action: TBurgerConstructorActions): TInitialContructor => {
   switch (action.type) {
     case INGREDIENTS_SAVE: {
       return {

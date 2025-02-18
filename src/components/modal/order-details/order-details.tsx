@@ -1,9 +1,10 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import modalStyle from '../modal.module.css'
+import { RootState } from '../../../services/type/data'
 
 const OrderDetails = () => {
-    const order = useSelector((state: any) => state.order.order)
+    const order = useSelector((state: RootState) => state.order.order)
     return (
         <div className={modalStyle.order_details}>
             <p className='text text_type_digits-large'>{order}</p>

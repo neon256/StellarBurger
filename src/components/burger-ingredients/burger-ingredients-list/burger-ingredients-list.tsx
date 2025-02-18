@@ -3,18 +3,20 @@ import burgerIngredientsStyle from "../burger-ingredients.module.css";
 import BurgerIngredientsTitle from "../burger-ingredients-title/burger-ingredients-title";
 import BurgerIngredientsCard from "../burger-ingredients-card/burger-ingredients-card";
 import { useDispatch, useSelector } from "react-redux";
-import { ACTIVE_TAB } from "../../../services/actions/burger-ingridients";
+
 import PropTypes from "prop-types";
 import { IBurgerIngredients } from "../../../utils/ingredients-interface";
+import { ACTIVE_TAB } from "../../../services/constants/burger-ingridients";
+import { AppDispatch, RootState } from "../../../services/type/data";
 
 interface IBurgerIngredientsList {
   location: { pathname: string };
 }
 
 const BurgerIngredientsList: FC<IBurgerIngredientsList> = ({ location }) => {
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
   const [scrollTop, setScrollTop] = useState<number>(0);
-  const ingredients = useSelector((state: any) => state.ingridient.data);
+  const ingredients = useSelector((state: RootState) => state.ingridient.data);
   const handleScroll = (event: React.UIEvent) => {
     if (event.currentTarget.scrollTop < 270) {
       dispatch({

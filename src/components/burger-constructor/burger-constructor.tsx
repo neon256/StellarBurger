@@ -14,17 +14,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { useDrop } from "react-dnd";
 import {
   order,
-  POST_INGRIDIENTS_FAILED,
-  POST_INGRIDIENTS_REQUEST,
-  POST_INGRIDIENTS_SUCCESS,
 } from "../../services/actions/order";
 import { useNavigate } from "react-router-dom";
 import { IBurgerIngredients } from "../../utils/ingredients-interface";
+import { AppDispatch, RootState } from "../../services/type/data";
 
 function BurgerConctructor() {
   const [visible, setVisible] = useState<boolean>(false);
-  const ingredients = useSelector((state: any) => state.burgerConstructor);
-  const dispatch: any = useDispatch();
+  const ingredients = useSelector((state: RootState) => state.burgerConstructor);
+  const dispatch: AppDispatch = useDispatch();
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const navigate = useNavigate();
 
@@ -52,7 +50,7 @@ function BurgerConctructor() {
   function handleCloseModal() {
     setVisible(false);
   }
-  function createOrder(orderItems: number, handleOpenModal: ()=> void) {
+  function createOrder(orderItems?: string[], handleOpenModal?: ()=> void) {
     if (!localStorage.getItem("accessToken")) {
       return navigate("/login");
     }

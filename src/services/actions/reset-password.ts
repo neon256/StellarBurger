@@ -1,16 +1,41 @@
 import { BASE_URL } from "../../utils/Api";
 import { checkResponse } from "../../utils/chekResponse";
+import { POST_FORGOT_PASSWORD_FAILED, POST_FORGOT_PASSWORD_REQUEST, POST_FORGOT_PASSWORD_SUCCESS, POST_RESET_PASSWORD_FAILED, POST_RESET_PASSWORD_REQUEST, POST_RESET_PASSWORD_SUCCESS } from "../constants/reset-password";
+import { AppDispatch } from "../type/data";
 
-export const POST_FORGOT_PASSWORD_REQUEST = "POST_FORGOT_PASSWORD_REQUEST";
-export const POST_FORGOT_PASSWORD_FAILED = "POST_FORGOT_PASSWORD_FAILED";
-export const POST_FORGOT_PASSWORD_SUCCESS = "POST_FORGOT_PASSWORD_SUCCESS";
 
-export const POST_RESET_PASSWORD_REQUEST = "POST_RESET_PASSWORD_REQUEST";
-export const POST_RESET_PASSWORD_FAILED = "POST_RESET_PASSWORD_FAILED";
-export const POST_RESET_PASSWORD_SUCCESS = "POST_RESET_PASSWORD_SUCCESS";
+export interface IPostForgotPasswordRequestAction {
+    readonly type: typeof POST_FORGOT_PASSWORD_REQUEST
+}
+export interface IPostForgotPasswordFailedAction {
+    readonly type: typeof POST_FORGOT_PASSWORD_FAILED
+}
+export interface IPostForgotPasswordSuccessAction {
+    readonly type: typeof POST_FORGOT_PASSWORD_SUCCESS
+    value: any
+}
 
-export function postForgotPassword(email, navigate){
-    return function (dispatch){
+export interface IPostResetPasswordRequestAction {
+    readonly type: typeof POST_RESET_PASSWORD_REQUEST
+}
+export interface IPostResetPasswordFailedAction {
+    readonly type: typeof POST_RESET_PASSWORD_FAILED
+}
+export interface IPostResetPasswordSuccessAction {
+    readonly type: typeof POST_RESET_PASSWORD_SUCCESS
+    value: any
+}
+
+export type TResetPassword = 
+    | IPostForgotPasswordFailedAction
+    | IPostForgotPasswordRequestAction
+    | IPostForgotPasswordSuccessAction
+    | IPostResetPasswordFailedAction
+    | IPostResetPasswordRequestAction
+    | IPostResetPasswordSuccessAction
+
+export function postForgotPassword(email: string, navigate: any){
+    return function (dispatch: AppDispatch){
         dispatch({type: POST_FORGOT_PASSWORD_REQUEST})
         const res = fetch(`${BASE_URL}/password-reset`, {
             method: 'POST',
@@ -33,8 +58,8 @@ export function postForgotPassword(email, navigate){
     }
 }
 
-export function postResetPassword(password, token, navigate){
-    return function (dispatch){
+export function postResetPassword(password: string, token: string, navigate: any){
+    return function (dispatch: AppDispatch){
         dispatch({type: POST_RESET_PASSWORD_REQUEST})
         const res = fetch(`${BASE_URL}/password-reset/reset`, {
             method: 'POST',

@@ -10,7 +10,8 @@ import {
   CHANGE_INGREDIENTS_POSITION,
   INGREDIENTS_REMOVE,
   INGREDIENTS_SAVE,
-} from "../../../services/actions/burger-constructor";
+} from "../../../services/constants/burger-constructor";
+import { AppDispatch } from "../../../services/type/data";
 
 interface IBurgerConstructorListElement {
   ing: any;
@@ -21,7 +22,7 @@ interface IBurgerConstructorListElement {
 
 const BurgerConstructorListElement: FC<IBurgerConstructorListElement> = ({ ing, id, index, moveIngredient }) => {
   const ref = useRef<HTMLLIElement>(null);
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
   const [{ handlerId }, drop] = useDrop({
     accept: "element",
     collect(monitor) {

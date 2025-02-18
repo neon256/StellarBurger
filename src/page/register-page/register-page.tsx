@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { postRegister } from '../../services/actions/user'
 import { TICons } from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/icons'
+import { AppDispatch } from '../../services/type/data'
 
 const RegisterPage = () => {
     const [emailValue, setEmailValue] = useState<string>('')
@@ -21,7 +22,7 @@ const RegisterPage = () => {
         setIcon(icon === 'ShowIcon' ? 'HideIcon' : 'ShowIcon');
     }
     const navigate = useNavigate();
-    const dispatch: any = useDispatch();
+    const dispatch: AppDispatch = useDispatch();
     return (
         <div className={regStyle.container}>
             <h1>Зарегистрироваться</h1>

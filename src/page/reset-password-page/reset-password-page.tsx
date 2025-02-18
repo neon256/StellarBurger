@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { postResetPassword } from '../../services/actions/reset-password'
 import { TICons } from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/icons'
+import { AppDispatch } from '../../services/type/data'
 
 const ResetPasswordPage = () => {
    const [passwordValue, setPasswordValue] = useState<string>('')
@@ -13,7 +14,7 @@ const ResetPasswordPage = () => {
       const [icon, setIcon] = useState<keyof TICons | undefined>('ShowIcon');
       const inputRef = useRef(null)
       const navigate = useNavigate();
-      const dispatch: any = useDispatch();
+      const dispatch:AppDispatch = useDispatch();
       const onIconClick = () => {
           setType(type === 'text' ? 'password' : 'text');
           setIcon(icon === 'ShowIcon' ? 'HideIcon' : 'ShowIcon');
