@@ -95,7 +95,7 @@ export type TUser =
   | IPostResetTokenRequestAction
   | IPostResetTokenSuccessAction;
 
-export function postAuth(email: string, password: string, navigate: any) {
+export function postAuth(email: string, password: string, navigate: (children:string)=>void, from: string) {
   return function (dispatch: AppDispatch) {
     dispatch({ type: POST_AUTH_REQUEST });
     const res = fetch(`${BASE_URL}/auth/login`, {
@@ -108,7 +108,7 @@ export function postAuth(email: string, password: string, navigate: any) {
       .then(checkResponse)
       .then((data) => {
         console.log(data);
-        navigate("/profile");
+        navigate(from);
         dispatch({ type: POST_AUTH_SUCCESS, value: data });
         localStorage.setItem("refreshToken", data.refreshToken);
         localStorage.setItem("accessToken", data.accessToken);
@@ -124,7 +124,7 @@ export function postRegister(
   email: string,
   password: string,
   name: string,
-  navigate: any
+  navigate: (children:string)=>void
 ) {
   return function (dispatch: AppDispatch) {
     dispatch({ type: POST_REGISTER_REQUEST });
@@ -152,9 +152,9 @@ export function postRegister(
 }
 
 export function getUser(
-  setLoad?: any,
-  setNameValue?: any,
-  setEmailValue?: any
+  setLoad?: (children:boolean)=>void,
+  setNameValue?: (children:string)=>void,
+  setEmailValue?: (children:string)=>void
 ) {
   return function (dispatch: AppDispatch) {
     dispatch({ type: GET_USER_REQUEST });
@@ -166,15 +166,23 @@ export function getUser(
     })
       .then(checkResponse)
       .then((data) => {
-        setLoad(false);
-        setNameValue(data.user.name);
-        setEmailValue(data.user.email);
+        if(setLoad){
+          setLoad(false);
+        }
+        if(setNameValue){
+          setNameValue(data.user.name);
+        }
+        if(setEmailValue){
+          setEmailValue(data.user.email);
+        }
         dispatch({ type: GET_USER_SUCCESS, value: data });
         return true;
       })
       .catch((error) => {
         console.log(error);
-        setLoad(true)
+        if(setLoad){
+          setLoad(true)
+        }
         dispatch({ type: GET_USER_FAILED });
         return false;
       });
@@ -185,8 +193,8 @@ export function patchUser(
   name: string,
   email: string,
   password: string,
-  setNameValue: any,
-  setEmailValue: any
+  setNameValue: (children:string)=>void,
+  setEmailValue: (children:string)=>void
 ) {
   return function (dispatch: AppDispatch) {
     dispatch({ type: PATCH_USER_REQUEST });

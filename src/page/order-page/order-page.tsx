@@ -5,6 +5,7 @@ import FeedCard from '../../components/feed-card/feed-card';
 import { useDispatch, useSelector } from 'react-redux';
 import { ORDERS_WEBSOCKET_CONNECT, WEBSOCKET_DISCONNECT, WEBSOCKET_MESSAGE_RECEIVED } from '../../services/constants/ws';
 import { AppDispatch, RootState } from '../../services/type/data';
+import { useAppDispatch } from '../../utils/hook';
 
 const OrderPage = () => {
     const navigate = useNavigate();
@@ -14,7 +15,7 @@ const OrderPage = () => {
         localStorage.removeItem('refreshToken')
         window.location.reload()
     }
-    const dispatch: AppDispatch = useDispatch();
+    const dispatch= useAppDispatch();
     const data = useSelector((state: RootState) => state.ws);
     useEffect(() => {
       dispatch({ type: ORDERS_WEBSOCKET_CONNECT });

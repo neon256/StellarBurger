@@ -15,17 +15,19 @@ import { useDrop } from "react-dnd";
 import {
   order,
 } from "../../services/actions/order";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { IBurgerIngredients } from "../../utils/ingredients-interface";
 import { AppDispatch, RootState } from "../../services/type/data";
+import { useAppDispatch, useAppSelector } from "../../utils/hook";
 
 function BurgerConctructor() {
   const [visible, setVisible] = useState<boolean>(false);
-  const ingredients = useSelector((state: RootState) => state.burgerConstructor);
-  const dispatch: AppDispatch = useDispatch();
+  const ingredients = useAppSelector((state) => state.burgerConstructor);
+  const dispatch = useAppDispatch();
   const [totalPrice, setTotalPrice] = useState<number>(0);
+  const [flag, setFlag] = useState(false)
   const navigate = useNavigate();
-
+  const location = useLocation()
   const price = useMemo(() => {
     return (
       ingredients.ingredients.reduce(
@@ -52,7 +54,7 @@ function BurgerConctructor() {
   }
   function createOrder(orderItems?: string[], handleOpenModal?: ()=> void) {
     if (!localStorage.getItem("accessToken")) {
-      return navigate("/login");
+      return setFlag(true)
     }
     if (!orderItems) {
       return;
@@ -84,6 +86,9 @@ function BurgerConctructor() {
         >
           Оформить заказ
         </Button>
+       {flag &&
+        <Navigate to="/login" state={{ from: location}}/>
+       } 
       </div>
       {visible && modal}
     </section>

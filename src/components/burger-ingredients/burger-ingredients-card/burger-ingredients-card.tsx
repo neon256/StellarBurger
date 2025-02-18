@@ -11,6 +11,7 @@ import { SET_INGREDIENTS_PRICE } from '../../../services/constants/burger-constr
 import { Link, useNavigate } from 'react-router-dom';
 import { IBurgerIngredients } from '../../../utils/ingredients-interface';
 import { AppDispatch, IIngredients, RootState } from '../../../services/type/data';
+import { useAppDispatch, useAppSelector } from '../../../utils/hook';
 
 interface IBurgerIngredientsCard {
     id: string;
@@ -20,8 +21,8 @@ interface IBurgerIngredientsCard {
 const BurgerIngredientsCard: FC<IBurgerIngredientsCard> = ({ id, ing, location }) => {
 
     const [visible, setVisible] = useState<boolean>(false);
-    const dispatch: AppDispatch = useDispatch();
-    const ingredients = useSelector((state: RootState) => state.burgerConstructor)
+    const dispatch = useAppDispatch();
+    const ingredients = useAppSelector((state) => state.burgerConstructor)
     function handleOpenModal(data: IIngredients) {
         dispatch({ type: INGRIDIENTS_DETAIL, value: data });   
     }

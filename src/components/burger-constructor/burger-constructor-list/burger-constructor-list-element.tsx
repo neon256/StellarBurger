@@ -5,13 +5,14 @@ import {
   DragIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useDrag, useDrop } from "react-dnd";
-import { useDispatch } from "react-redux";
+
 import {
   CHANGE_INGREDIENTS_POSITION,
   INGREDIENTS_REMOVE,
   INGREDIENTS_SAVE,
 } from "../../../services/constants/burger-constructor";
-import { AppDispatch } from "../../../services/type/data";
+
+import { useAppDispatch } from "../../../utils/hook";
 
 interface IBurgerConstructorListElement {
   ing: any;
@@ -22,7 +23,7 @@ interface IBurgerConstructorListElement {
 
 const BurgerConstructorListElement: FC<IBurgerConstructorListElement> = ({ ing, id, index, moveIngredient }) => {
   const ref = useRef<HTMLLIElement>(null);
-  const dispatch: AppDispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const [{ handlerId }, drop] = useDrop({
     accept: "element",
     collect(monitor) {

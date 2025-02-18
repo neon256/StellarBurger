@@ -27,7 +27,7 @@ const rootReducer = combineReducers({
   singleOrder: getOrder,
 });
 const websocketMiddlewareAll = createWebSocketMiddleware({
-  url: 'wss://norma.nomoreparties.space/orders/all',
+  wsUrl: 'wss://norma.nomoreparties.space/orders',
   actions: {
     connect: WEBSOCKET_CONNECT,
     disconnect: WEBSOCKET_DISCONNECT,
@@ -42,7 +42,7 @@ const websocketMiddlewareAll = createWebSocketMiddleware({
  
 
 const websocketMiddlewareOrders = createWebSocketMiddleware({
-  url: `wss://norma.nomoreparties.space/orders?token=`,
+  wsUrl: `wss://norma.nomoreparties.space/orders`,
   actions: {
     connect: ORDERS_WEBSOCKET_CONNECT,
     disconnect: ORDERS_WEBSOCKET_DISCONNECT,
@@ -58,3 +58,4 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(websocketMiddlewareAll).concat(websocketMiddlewareOrders),
   devTools: process.env.NODE_ENV !== "production",
 });
+

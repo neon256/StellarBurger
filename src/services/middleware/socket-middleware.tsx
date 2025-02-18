@@ -1,8 +1,7 @@
 import { Middleware, MiddlewareAPI, Dispatch, AnyAction, UnknownAction } from 'redux';
-import { string } from 'prop-types';
 
 type WebSocketMiddlewareOptions = {
-  url: string;
+  wsUrl: string; // Базовый URL для WebSocket
   actions: {
     connect: string;
     disconnect: string;
@@ -22,20 +21,20 @@ function createWebSocketMiddleware(options: WebSocketMiddlewareOptions): Middlew
   let socket: WebSocket | null = null;
 
   return ((store: MiddlewareAPI) => (next: Dispatch<UnknownAction>) => (action: AnyAction): AnyAction => {
-    const { actions } = options;
+    const { actions, wsUrl } = options;
+    const { type, payload } = action;
 
-    switch (action.type) {
+    switch (type) {
       case actions.connect: {
         if (socket !== null) {
           console.warn('WebSocket is already connected.');
           return next(action);
         }
-
-        const url = options.url === 'wss://norma.nomoreparties.space/orders/all' 
-          ? options.url 
-          : `wss://norma.nomoreparties.space/orders?token=${localStorage.getItem('accessToken')?.slice(7)}`;
-
-        socket = new WebSocket(url);
+        //Не понял как делать через payload :(
+        const token = localStorage.getItem('accessToken')?.slice(7);
+        const fullUrl = token ? `${wsUrl}?token=${token}` : `${wsUrl}/all`;
+        
+        socket = new WebSocket(fullUrl);
 
         socket.onopen = (event) => {
           options.onOpen?.(event);
@@ -80,7 +79,7 @@ function createWebSocketMiddleware(options: WebSocketMiddlewareOptions): Middlew
 
       case actions.sendMessage: {
         if (socket !== null && socket.readyState === WebSocket.OPEN) {
-          socket.send(JSON.stringify(action.payload));
+          socket.send(JSON.stringify(payload));
         } else {
           console.warn('WebSocket is not open. Cannot send message.');
         }

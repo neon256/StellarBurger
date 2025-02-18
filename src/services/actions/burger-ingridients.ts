@@ -42,7 +42,7 @@ export type TBurgerIngredients =
 
 const URL: string = `${BASE_URL}/ingredients`;
 
-export function getData(setLoad: any) {
+export function getData(setLoad: (children: boolean)=>void) {
   return function (dispatch: AppDispatch) {
     dispatch({ type: GET_INGRIDIENTS_REQUEST });
     const res = fetch(URL)

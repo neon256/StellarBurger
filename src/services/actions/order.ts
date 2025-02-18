@@ -10,7 +10,8 @@ import {
   POST_INGRIDIENTS_SUCCESS,
 } from "../constants/order";
 import { access } from "fs";
-import { AppDispatch } from "../type/data";
+import { AppDispatch, IOrder } from "../type/data";
+import { SyntheticEvent } from "react";
 
 export interface IPostIngredientsRequestAction {
   readonly type: typeof POST_INGRIDIENTS_REQUEST;
@@ -27,7 +28,7 @@ export interface IGetOrderRequest {
 }
 export interface IGetOrderSucces {
   readonly type: typeof GET_ORDER_SUCCESS;
-  readonly value: any;
+  readonly value: IOrder;
 }
 export interface IGetOrderFailed {
   readonly type: typeof GET_ORDER_FAILED;
@@ -43,7 +44,7 @@ export type TOrder =
 
 const URL: string = `${BASE_URL}/orders`;
 
-export function order(orderItems: string[], handleOpenModal: any) {
+export function order(orderItems: string[], handleOpenModal?: () => void) {
   return function (dispatch: AppDispatch) {
     dispatch({ type: POST_INGRIDIENTS_REQUEST });
     const res = fetch(URL, {
@@ -62,7 +63,9 @@ export function order(orderItems: string[], handleOpenModal: any) {
         console.log(error);
         dispatch({ type: POST_INGRIDIENTS_FAILED });
       });
-    handleOpenModal();
+      if (handleOpenModal) {
+        handleOpenModal();
+      }
     return res;
   };
 }

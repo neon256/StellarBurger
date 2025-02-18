@@ -13,9 +13,10 @@ import {
   postResetToken,
 } from "../../services/actions/user";
 import { AppDispatch, RootState } from "../../services/type/data";
+import { useAppDispatch, useAppSelector } from "../../utils/hook";
 
 const ProfilePage = () => {
-  let user = useSelector((state: RootState) => state.user);
+  let user = useAppSelector((state) => state.user);
   const navigate = useNavigate();
   const [load, setLoad] = useState(true);
   const [nameValue, setNameValue] = useState<string>(user.name);
@@ -24,7 +25,7 @@ const ProfilePage = () => {
   const [nameDisabled, setNameDisabled] = useState<boolean>(true);
   const [passwordDisabled, setPasswordDisabled] = useState<boolean>(true);
   const [active, setActive] = useState(false);
-  const dispatch: AppDispatch = useDispatch();
+  const dispatch= useAppDispatch();
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setEmailValue(e.target.value);
     setActive(true);

@@ -19,7 +19,7 @@ interface IModal {
 
 const Modal: FC<IModal> = ({ onClose, children, header }) => {
     const navigate = useNavigate()
-    const dispatch: AppDispatch = useDispatch();
+
     const location = useLocation();
     const background = location.state && location.state.background
     function closeModal(){

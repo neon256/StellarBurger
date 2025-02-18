@@ -1,10 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ingretientsDetailsStyle from './ingredient-details.module.css'
 import PropTypes from 'prop-types'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../../services/type/data'
+import { INGRIDIENTS_DETAIL } from '../../../services/constants/ingredient-details'
+import { useParams } from 'react-router-dom'
+import { useAppSelector } from '../../../utils/hook'
 const IngredientDetails = () => {
-    const data = useSelector((state: RootState) => state.details.data);
+    let data = useAppSelector((state) => state.details.data);
+    const ingredients = useAppSelector((state)=> state.ingridient.data);
+    const params = useParams()
+    if(!data){
+        data = ingredients.find(item => item._id == params.id);
+    }
     return (
         <div className={ingretientsDetailsStyle.container}>
             <img src={data?.image_large} alt={data?.name} />

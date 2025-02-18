@@ -8,15 +8,16 @@ import PropTypes from "prop-types";
 import { IBurgerIngredients } from "../../../utils/ingredients-interface";
 import { ACTIVE_TAB } from "../../../services/constants/burger-ingridients";
 import { AppDispatch, RootState } from "../../../services/type/data";
+import { useAppDispatch, useAppSelector } from "../../../utils/hook";
 
 interface IBurgerIngredientsList {
   location: { pathname: string };
 }
 
 const BurgerIngredientsList: FC<IBurgerIngredientsList> = ({ location }) => {
-  const dispatch: AppDispatch = useDispatch();
+  const dispatch= useAppDispatch();
   const [scrollTop, setScrollTop] = useState<number>(0);
-  const ingredients = useSelector((state: RootState) => state.ingridient.data);
+  const ingredients = useAppSelector((state) => state.ingridient.data);
   const handleScroll = (event: React.UIEvent) => {
     if (event.currentTarget.scrollTop < 270) {
       dispatch({

@@ -4,10 +4,11 @@ import { useParams } from 'react-router-dom'
 import ingretientsDetailsStyle from './ingredients-page.module.css'
 import { IBurgerIngredients } from '../../utils/ingredients-interface'
 import { RootState } from '../../services/type/data'
+import { useAppSelector } from '../../utils/hook'
 
 
 const IngredientsPage = () => {
-    const ingredients = useSelector((state: RootState) => state.ingridient.data)
+    const ingredients = useAppSelector((state) => state.ingridient.data)
     const {id} = useParams()
     const data = ingredients.find((item: IBurgerIngredients) => item._id == id);
   return (

@@ -1,4 +1,4 @@
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import {
   privateRoutes,
   publicRoutes,
@@ -12,11 +12,12 @@ import { getUser, postResetToken } from "../services/actions/user";
 import { createElement, useEffect, useState } from "react";
 import FeedById from "../page/feed-by-id/feed-by-id";
 import { AppDispatch } from "../services/type/data";
+import { useAppDispatch } from "../utils/hook";
 
 const AppRouter = () => {
   const location = useLocation();
   const background = location.state && location.state.background;
-  const dispatch: AppDispatch = useDispatch();
+  const dispatch= useAppDispatch();
   const [load, setLoad] = useState(false)
 
   useEffect(() => {
@@ -56,7 +57,9 @@ const AppRouter = () => {
             />
           ))}
         <Route path="*" element={<Error />} />
+        
       </Routes>
+      
       {background && (
         <Routes>
           <Route
@@ -94,3 +97,4 @@ const AppRouter = () => {
 };
 
 export default AppRouter;
+

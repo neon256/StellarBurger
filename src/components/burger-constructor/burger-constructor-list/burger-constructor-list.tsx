@@ -7,11 +7,12 @@ import { BUN_SAVE, CHANGE_INGREDIENTS_POSITION, INGREDIENTS_SAVE } from '../../.
 import BurgerConstructorListElement from './burger-constructor-list-element';
 import update from 'immutability-helper'
 import { v4 as uuidv4 } from 'uuid';
-import { AppDispatch, RootState } from '../../../services/type/data';
+
+import { useAppDispatch, useAppSelector } from '../../../utils/hook';
 
 const BurgerConstructorList = () => {
-    const ingredients = useSelector((state: RootState) => state.burgerConstructor);
-    const dispatch: AppDispatch = useDispatch()
+    const ingredients = useAppSelector((state) => state.burgerConstructor);
+    const dispatch = useAppDispatch()
 
     function onDropHandler(item: any) {
         if (item.type === 'bun') {

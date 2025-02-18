@@ -10,9 +10,10 @@ import {
 } from "../../services/constants/ws";
 import { AppDispatch, IOrderIngredients, RootState } from "../../services/type/data";
 import { useLocation } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../utils/hook";
 const Feed = () => {
-  const dispatch: AppDispatch = useDispatch();
-  const data = useSelector((state: RootState) => state.ws);
+  const dispatch = useAppDispatch();
+  const data = useAppSelector((state) => state.ws);
   useEffect(() => {
     dispatch({ type: WEBSOCKET_CONNECT });
     if (data.isConnecting == true) {

@@ -6,11 +6,11 @@ import {
 import { IIngredients } from "../type/data";
 
 type TInitialDetails = {
-  data: IIngredients | null,
+  data: IIngredients | undefined,
 };
 
 const initialDetails: TInitialDetails = {
-  data: null,
+  data: undefined,
 };
 
 export const viewedIngridients = (state = initialDetails, action: TIngredientsDetails): TInitialDetails => {
@@ -22,7 +22,7 @@ export const viewedIngridients = (state = initialDetails, action: TIngredientsDe
     }
     case DELETE_INGRIDIENTS_DETAIL: {
       return {
-        data: null,
+        data: undefined,
       };
     }
     default: {

@@ -12,7 +12,10 @@ export interface IPostForgotPasswordFailedAction {
 }
 export interface IPostForgotPasswordSuccessAction {
     readonly type: typeof POST_FORGOT_PASSWORD_SUCCESS
-    value: any
+    value: {
+        success: boolean,
+        message: string
+      } 
 }
 
 export interface IPostResetPasswordRequestAction {
@@ -23,7 +26,10 @@ export interface IPostResetPasswordFailedAction {
 }
 export interface IPostResetPasswordSuccessAction {
     readonly type: typeof POST_RESET_PASSWORD_SUCCESS
-    value: any
+    value:{
+        success: boolean,
+        message: string
+      } 
 }
 
 export type TResetPassword = 
@@ -34,7 +40,7 @@ export type TResetPassword =
     | IPostResetPasswordRequestAction
     | IPostResetPasswordSuccessAction
 
-export function postForgotPassword(email: string, navigate: any){
+export function postForgotPassword(email: string, navigate: (children:string)=>void){
     return function (dispatch: AppDispatch){
         dispatch({type: POST_FORGOT_PASSWORD_REQUEST})
         const res = fetch(`${BASE_URL}/password-reset`, {
@@ -58,7 +64,7 @@ export function postForgotPassword(email: string, navigate: any){
     }
 }
 
-export function postResetPassword(password: string, token: string, navigate: any){
+export function postResetPassword(password: string, token: string, navigate: (children:string)=>void){
     return function (dispatch: AppDispatch){
         dispatch({type: POST_RESET_PASSWORD_REQUEST})
         const res = fetch(`${BASE_URL}/password-reset/reset`, {

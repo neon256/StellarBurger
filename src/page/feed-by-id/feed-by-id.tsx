@@ -5,6 +5,7 @@ import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getOrder } from "../../services/actions/order";
+import { useAppDispatch, useAppSelector } from "../../utils/hook";
 
 interface IFeedById {
   status?: string;
@@ -13,11 +14,11 @@ interface IFeedById {
 
 const FeedById: FC<IFeedById> = ({ status }) => {
   const params = useParams();
-  const dispatch: AppDispatch = useDispatch();
-  const feed = useSelector((state: RootState) => state.ws.feed.orders);
-  const orders = useSelector((state: RootState) => state.ws.orders.orders);
-  const singleOrder = useSelector((state: RootState) => state.singleOrder.order[0]);
-  const ingredients = useSelector((state: RootState) => state.ingridient.data);
+  const dispatch = useAppDispatch();
+  const feed = useAppSelector((state) => state.ws.feed.orders);
+  const orders = useAppSelector((state) => state.ws.orders.orders);
+  
+  const ingredients = useAppSelector((state) => state.ingridient.data);
   const [check, setCheck] = useState(false);
   let order: IOrderIngredients;
 

@@ -13,6 +13,7 @@ import {
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { number } from "prop-types";
+import { useAppSelector } from "../../utils/hook";
 interface IFeed {
   status?: boolean;
   data: Array<IOrderIngredients>;
@@ -22,7 +23,7 @@ interface IFeed {
 
 const FeedCard: FC<IFeed> = ({ status, data, link, location }) => {
   let cost: number = 0;
-  const ingredient = useSelector((state: RootState) => state.ingridient.data);
+  const ingredient = useAppSelector((state) => state.ingridient.data);
   const navigate = useNavigate();
   return (
     <>
