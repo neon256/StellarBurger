@@ -1,23 +1,30 @@
-import {
-  ACTIVE_TAB,
-  CHANGE_TAB,
-  GET_INGRIDIENTS_FAILED,
-  GET_INGRIDIENTS_REQUEST,
-  GET_INGRIDIENTS_SUCCESS,
-} from "../actions/burger-ingridients";
+import { TBurgerIngredients } from "../actions/burger-ingridients";
+import { ACTIVE_TAB, CHANGE_TAB, GET_INGRIDIENTS_FAILED, GET_INGRIDIENTS_REQUEST, GET_INGRIDIENTS_SUCCESS } from "../constants/burger-ingridients";
+import { IIngredients } from "../type/data";
 
-const initialState = {
+type TInitialState = {
+  data: Array<IIngredients>,
+  load: boolean,
+  dataRequest: boolean,
+  dataFailed: boolean,
+}
+
+type TInitialActiveTab = {
+  tab: "one"|"two"|"three",
+};
+
+const initialState: TInitialState = {
   data: [],
   load: true,
   dataRequest: false,
   dataFailed: false,
 };
 
-const initialActiveTab = {
+const initialActiveTab: TInitialActiveTab = {
   tab: "one",
 };
 
-export const listAllGetIngridients = (state = initialState, action) => {
+export const listAllGetIngridients = (state = initialState, action: TBurgerIngredients): TInitialState => {
   switch (action.type) {
     case GET_INGRIDIENTS_REQUEST: {
       return {
@@ -47,7 +54,7 @@ export const listAllGetIngridients = (state = initialState, action) => {
   }
 };
 
-export const activeTab = (state = initialActiveTab, action) => {
+export const activeTab = (state = initialActiveTab, action: TBurgerIngredients): TInitialActiveTab => {
   switch (action.type) {
     case ACTIVE_TAB: {
       return {

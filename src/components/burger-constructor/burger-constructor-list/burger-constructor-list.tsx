@@ -1,23 +1,24 @@
 import React, { useCallback, useEffect } from 'react'
 import burgerConstructorStyle from '../burger-constructor.module.css'
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useDispatch, useSelector } from 'react-redux';
+
 import { useDrag, useDrop } from 'react-dnd';
-import { BUN_SAVE, CHANGE_INGREDIENTS_POSITION, INGREDIENTS_SAVE } from '../../../services/actions/burger-constructor';
+import { BUN_SAVE, CHANGE_INGREDIENTS_POSITION, INGREDIENTS_SAVE } from '../../../services/constants/burger-constructor';
 import BurgerConstructorListElement from './burger-constructor-list-element';
 import update from 'immutability-helper'
 import { v4 as uuidv4 } from 'uuid';
 
+import { useAppDispatch, useAppSelector } from '../../../utils/hook';
+
 const BurgerConstructorList = () => {
-    const ingredients = useSelector((state: any) => state.burgerConstructor);
-    const dispatch = useDispatch()
+    const ingredients = useAppSelector((state) => state.burgerConstructor);
+    const dispatch = useAppDispatch()
 
     function onDropHandler(item: any) {
         if (item.type === 'bun') {
             dispatch({
                 type: BUN_SAVE,
                 value: item,
-                
             })
         } else {
             dispatch({

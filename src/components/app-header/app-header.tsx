@@ -7,7 +7,6 @@ import {
 import React, { useEffect, useState } from "react";
 import headerStyles from "./app-header.module.css";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 
 const AppHeader = () => {
   const token: string | null = localStorage.getItem('accessToken')
@@ -27,13 +26,13 @@ const AppHeader = () => {
               <BurgerIcon type="secondary" className="mr-2" />
               Конструктор
             </Link>
-            <a
-              href=""
+            <Link
+              to="/feed"
               className={`text text_type_main-default p-5 mr-2 ${headerStyles.link}`}
             >
               <ListIcon type="secondary" className="mr-2" />
               Лента заказов
-            </a>
+            </Link>
           </div>
           <Logo className="mt-6 mb-6" />
         </div>

@@ -10,24 +10,24 @@ import BurgerConstructorList from "./burger-constructor-list/burger-constructor-
 import PropTypes, { any, arrayOf } from "prop-types";
 import Modal from "../modal/modal";
 import OrderDetails from "../modal/order-details/order-details";
-import { useDispatch, useSelector } from "react-redux";
+
 import { useDrop } from "react-dnd";
 import {
   order,
-  POST_INGRIDIENTS_FAILED,
-  POST_INGRIDIENTS_REQUEST,
-  POST_INGRIDIENTS_SUCCESS,
 } from "../../services/actions/order";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { IBurgerIngredients } from "../../utils/ingredients-interface";
+import { AppDispatch, RootState } from "../../services/type/data";
+import { useAppDispatch, useAppSelector } from "../../utils/hook";
 
 function BurgerConctructor() {
   const [visible, setVisible] = useState<boolean>(false);
-  const ingredients = useSelector((state: any) => state.burgerConstructor);
-  const dispatch: any = useDispatch();
+  const ingredients = useAppSelector((state) => state.burgerConstructor);
+  const dispatch = useAppDispatch();
   const [totalPrice, setTotalPrice] = useState<number>(0);
+  const [flag, setFlag] = useState(false)
   const navigate = useNavigate();
-
+  const location = useLocation()
   const price = useMemo(() => {
     return (
       ingredients.ingredients.reduce(
@@ -52,9 +52,9 @@ function BurgerConctructor() {
   function handleCloseModal() {
     setVisible(false);
   }
-  function createOrder(orderItems: number, handleOpenModal: ()=> void) {
+  function createOrder(orderItems?: string[], handleOpenModal?: ()=> void) {
     if (!localStorage.getItem("accessToken")) {
-      return navigate("/login");
+      return setFlag(true)
     }
     if (!orderItems) {
       return;
@@ -86,6 +86,9 @@ function BurgerConctructor() {
         >
           Оформить заказ
         </Button>
+       {flag &&
+        <Navigate to="/login" state={{ from: location}}/>
+       } 
       </div>
       {visible && modal}
     </section>

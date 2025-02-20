@@ -4,12 +4,14 @@ import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-c
 import PropTypes, { element } from 'prop-types';
 import Modal from '../../modal/modal';
 import IngredientDetails from '../../modal/ingredient-details/ingredient-details';
-import { useDispatch, useSelector } from 'react-redux';
-import { DELETE_INGRIDIENTS_DETAIL, INGRIDIENTS_DETAIL } from '../../../services/actions/ingredient-details';
+
+import { DELETE_INGRIDIENTS_DETAIL, INGRIDIENTS_DETAIL } from '../../../services/constants/ingredient-details';
 import { useDrag } from 'react-dnd';
-import { SET_INGREDIENTS_PRICE } from '../../../services/actions/burger-constructor';
+import { SET_INGREDIENTS_PRICE } from '../../../services/constants/burger-constructor';
 import { Link, useNavigate } from 'react-router-dom';
 import { IBurgerIngredients } from '../../../utils/ingredients-interface';
+import { AppDispatch, IIngredients, RootState } from '../../../services/type/data';
+import { useAppDispatch, useAppSelector } from '../../../utils/hook';
 
 interface IBurgerIngredientsCard {
     id: string;
@@ -19,22 +21,9 @@ interface IBurgerIngredientsCard {
 const BurgerIngredientsCard: FC<IBurgerIngredientsCard> = ({ id, ing, location }) => {
 
     const [visible, setVisible] = useState<boolean>(false);
-    const dispatch = useDispatch();
-    const ingredients = useSelector((state: any) => state.burgerConstructor)
-    function handleOpenModal(data: {
-        _id:string;
-        name:string;
-        type:string;
-        proteins:number;
-        fat:number;
-        carbohydrates:number;
-        calories:number;
-        price:number;
-        image:string;
-        image_mobile:string;
-        image_large:string;
-        __v:number;
-    }) {
+    const dispatch = useAppDispatch();
+    const ingredients = useAppSelector((state) => state.burgerConstructor)
+    function handleOpenModal(data: IIngredients) {
         dispatch({ type: INGRIDIENTS_DETAIL, value: data });   
     }
 
