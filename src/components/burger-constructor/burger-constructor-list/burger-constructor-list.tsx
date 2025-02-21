@@ -53,7 +53,7 @@ const BurgerConstructorList = () => {
 
 
     return (
-        <ul className={`mb-10 ${burgerConstructorStyle.ingredients_container}`} ref={dropTarget}>
+        <ul className={`mb-10 ${burgerConstructorStyle.ingredients_container}`} id='constructor' ref={dropTarget}>
             {ingredients.bun !== null ? (
 
                 <li className="mr-4">
