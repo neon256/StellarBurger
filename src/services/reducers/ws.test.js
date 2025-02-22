@@ -1,4 +1,4 @@
-import { ws } from "./ws";
+import { initialState, ws } from "./ws";
 import {
   WEBSOCKET_CONNECT,
   WEBSOCKET_MESSAGE_RECEIVED,
@@ -9,12 +9,7 @@ import {
 } from "../constants/ws";
 
 describe("ws reducer", () => {
-  const initialState = {
-    feed: [],
-    isConnecting: false,
-    orders: [],
-  };
-
+  
   it("should return the initial state", () => {
     expect(ws(undefined, {})).toEqual(initialState);
   });

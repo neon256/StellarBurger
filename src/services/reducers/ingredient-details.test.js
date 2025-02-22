@@ -1,13 +1,11 @@
-import { viewedIngridients } from './ingredient-details';
+import { initialDetails, viewedIngridients } from './ingredient-details';
 import { INGRIDIENTS_DETAIL, DELETE_INGRIDIENTS_DETAIL } from '../constants/ingredient-details';
 
 describe('viewedIngridients reducer', () => {
-  const initialState = {
-    data: undefined,
-  };
+  
 
   it('should return the initial state', () => {
-    expect(viewedIngridients(undefined, {})).toEqual(initialState);
+    expect(viewedIngridients(undefined, {})).toEqual(initialDetails);
   });
 
   it('should handle INGRIDIENTS_DETAIL', () => {
@@ -16,7 +14,7 @@ describe('viewedIngridients reducer', () => {
     const expectedState = {
       data: ingredient,
     };
-    expect(viewedIngridients(initialState, action)).toEqual(expectedState);
+    expect(viewedIngridients(initialDetails, action)).toEqual(expectedState);
   });
 
   it('should handle DELETE_INGRIDIENTS_DETAIL', () => {

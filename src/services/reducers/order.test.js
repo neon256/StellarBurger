@@ -1,4 +1,4 @@
-import { order, getOrder } from './order';
+import { order, getOrder, initialOrder, getOrderState } from './order';
 import {
   POST_INGRIDIENTS_REQUEST,
   POST_INGRIDIENTS_SUCCESS,
@@ -8,26 +8,21 @@ import {
   GET_ORDER_FAILED,
 } from '../constants/order';
 describe('order reducer', () => {
-  const initialState = {
-    load: false,
-    dataRequest: false,
-    dataFailed: false,
-    order: null,
-  };
+ 
 
   it('should return the initial state', () => {
-    expect(order(undefined, {})).toEqual(initialState);
+    expect(order(undefined, {})).toEqual(initialOrder);
   });
 
   it('should handle POST_INGRIDIENTS_REQUEST', () => {
     const action = { type: POST_INGRIDIENTS_REQUEST };
     const expectedState = {
-      ...initialState,
+      ...initialOrder,
       order: null,
       load: true,
       dataRequest: true,
     };
-    expect(order(initialState, action)).toEqual(expectedState);
+    expect(order(initialOrder, action)).toEqual(expectedState);
   });
 
   it('should handle POST_INGRIDIENTS_SUCCESS', () => {
@@ -39,42 +34,37 @@ describe('order reducer', () => {
       dataFailed: false,
       order: orderNumber,
     };
-    expect(order(initialState, action)).toEqual(expectedState);
+    expect(order(initialOrder, action)).toEqual(expectedState);
   });
 
   it('should handle POST_INGRIDIENTS_FAILED', () => {
     const action = { type: POST_INGRIDIENTS_FAILED };
     const expectedState = {
-      ...initialState,
+      ...initialOrder,
       load: false,
       dataRequest: false,
       dataFailed: true,
     };
-    expect(order(initialState, action)).toEqual(expectedState);
+    expect(order(initialOrder, action)).toEqual(expectedState);
   });
 });
 
 describe('getOrder reducer', () => {
-  const initialState = {
-    order: [],
-    load: false,
-    dataRequest: false,
-    dataFailed: false,
-  };
+  
 
   it('should return the initial state', () => {
-    expect(getOrder(undefined, {})).toEqual(initialState);
+    expect(getOrder(undefined, {})).toEqual(getOrderState);
   });
 
   it('should handle GET_ORDER_REQUEST', () => {
     const action = { type: GET_ORDER_REQUEST };
     const expectedState = {
-      ...initialState,
+      ...getOrderState,
       order: [],
       load: true,
       dataRequest: true,
     };
-    expect(getOrder(initialState, action)).toEqual(expectedState);
+    expect(getOrder(getOrderState, action)).toEqual(expectedState);
   });
 
   it('should handle GET_ORDER_SUCCESS', () => {
@@ -86,17 +76,17 @@ describe('getOrder reducer', () => {
       dataFailed: false,
       order: orderData,
     };
-    expect(getOrder(initialState, action)).toEqual(expectedState);
+    expect(getOrder(getOrderState, action)).toEqual(expectedState);
   });
 
   it('should handle GET_ORDER_FAILED', () => {
     const action = { type: GET_ORDER_FAILED };
     const expectedState = {
-      ...initialState,
+      ...getOrderState,
       load: false,
       dataRequest: false,
       dataFailed: true,
     };
-    expect(getOrder(initialState, action)).toEqual(expectedState);
+    expect(getOrder(getOrderState, action)).toEqual(expectedState);
   });
 });

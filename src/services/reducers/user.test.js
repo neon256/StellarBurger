@@ -1,4 +1,4 @@
-import { user } from './user';
+import { initialAuth, user } from './user';
 import {
   POST_AUTH_REQUEST,
   POST_AUTH_SUCCESS,
@@ -16,27 +16,20 @@ import {
 } from '../constants/user';
 
 describe('user reducer', () => {
-  const initialState = {
-    email: '',
-    name: '',
-    accessToken: '',
-    load: false,
-    dataRequest: false,
-    dataFailed: false,
-  };
+  
 
   it('should return the initial state', () => {
-    expect(user(undefined, {})).toEqual(initialState);
+    expect(user(undefined, {})).toEqual(initialAuth);
   });
 
   it('should handle POST_AUTH_REQUEST', () => {
     const action = { type: POST_AUTH_REQUEST };
     const expectedState = {
-      ...initialState,
+      ...initialAuth,
       dataRequest: true,
       load: true,
     };
-    expect(user(initialState, action)).toEqual(expectedState);
+    expect(user(initialAuth, action)).toEqual(expectedState);
   });
 
   it('should handle POST_AUTH_SUCCESS', () => {
@@ -55,28 +48,28 @@ describe('user reducer', () => {
       load: false,
       dataFailed: false,
     };
-    expect(user(initialState, action)).toEqual(expectedState);
+    expect(user(initialAuth, action)).toEqual(expectedState);
   });
 
   it('should handle POST_AUTH_FAILED', () => {
     const action = { type: POST_AUTH_FAILED };
     const expectedState = {
-      ...initialState,
+      ...initialAuth,
       load: false,
       dataRequest: false,
       dataFailed: true,
     };
-    expect(user(initialState, action)).toEqual(expectedState);
+    expect(user(initialAuth, action)).toEqual(expectedState);
   });
 
   it('should handle POST_REGISTER_REQUEST', () => {
     const action = { type: POST_REGISTER_REQUEST };
     const expectedState = {
-      ...initialState,
+      ...initialAuth,
       dataRequest: true,
       load: true,
     };
-    expect(user(initialState, action)).toEqual(expectedState);
+    expect(user(initialAuth, action)).toEqual(expectedState);
   });
 
   it('should handle POST_REGISTER_SUCCESS', () => {
@@ -95,28 +88,28 @@ describe('user reducer', () => {
       load: false,
       dataFailed: false,
     };
-    expect(user(initialState, action)).toEqual(expectedState);
+    expect(user(initialAuth, action)).toEqual(expectedState);
   });
 
   it('should handle POST_REGISTER_FAILED', () => {
     const action = { type: POST_REGISTER_FAILED };
     const expectedState = {
-      ...initialState,
+      ...initialAuth,
       load: false,
       dataRequest: false,
       dataFailed: true,
     };
-    expect(user(initialState, action)).toEqual(expectedState);
+    expect(user(initialAuth, action)).toEqual(expectedState);
   });
 
   it('should handle GET_USER_REQUEST', () => {
     const action = { type: GET_USER_REQUEST };
     const expectedState = {
-      ...initialState,
+      ...initialAuth,
       dataRequest: true,
       load: true,
     };
-    expect(user(initialState, action)).toEqual(expectedState);
+    expect(user(initialAuth, action)).toEqual(expectedState);
   });
 
   it('should handle GET_USER_SUCCESS', () => {
@@ -127,35 +120,35 @@ describe('user reducer', () => {
       },
     };
     const expectedState = {
-      ...initialState,
+      ...initialAuth,
       email: 'test@example.com',
       name: 'Test User',
       dataRequest: false,
       load: false,
       dataFailed: false,
     };
-    expect(user(initialState, action)).toEqual(expectedState);
+    expect(user(initialAuth, action)).toEqual(expectedState);
   });
 
   it('should handle GET_USER_FAILED', () => {
     const action = { type: GET_USER_FAILED };
     const expectedState = {
-      ...initialState,
+      ...initialAuth,
       load: false,
       dataRequest: false,
       dataFailed: true,
     };
-    expect(user(initialState, action)).toEqual(expectedState);
+    expect(user(initialAuth, action)).toEqual(expectedState);
   });
 
   it('should handle PATCH_USER_REQUEST', () => {
     const action = { type: PATCH_USER_REQUEST };
     const expectedState = {
-      ...initialState,
+      ...initialAuth,
       dataRequest: true,
       load: true,
     };
-    expect(user(initialState, action)).toEqual(expectedState);
+    expect(user(initialAuth, action)).toEqual(expectedState);
   });
 
   it('should handle PATCH_USER_SUCCESS', () => {
@@ -174,18 +167,18 @@ describe('user reducer', () => {
       load: false,
       dataFailed: false,
     };
-    expect(user(initialState, action)).toEqual(expectedState);
+    expect(user(initialAuth, action)).toEqual(expectedState);
   });
 
   it('should handle PATCH_USER_FAILED', () => {
     const action = { type: PATCH_USER_FAILED };
     const expectedState = {
-      ...initialState,
+      ...initialAuth,
       load: false,
       dataRequest: false,
       dataFailed: true,
     };
-    expect(user(initialState, action)).toEqual(expectedState);
+    expect(user(initialAuth, action)).toEqual(expectedState);
   });
 
   it('should handle POST_RESET_TOKEN_SUCCESS', () => {
@@ -194,12 +187,12 @@ describe('user reducer', () => {
       data: { accessToken: 'new-access-token' },
     };
     const expectedState = {
-      ...initialState,
+      ...initialAuth,
       accessToken: 'new-access-token',
       dataRequest: false,
       load: false,
       dataFailed: false,
     };
-    expect(user(initialState, action)).toEqual(expectedState);
+    expect(user(initialAuth, action)).toEqual(expectedState);
   });
 });

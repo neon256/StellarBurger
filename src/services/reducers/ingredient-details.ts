@@ -9,7 +9,7 @@ type TInitialDetails = {
   data: IIngredients | undefined,
 };
 
-const initialDetails: TInitialDetails = {
+export const initialDetails: TInitialDetails = {
   data: undefined,
 };
 

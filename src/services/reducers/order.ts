@@ -15,14 +15,14 @@ type TInitialOrder = {
   order: number | null,
 };
 
-const initialOrder: TInitialOrder = {
+export const initialOrder: TInitialOrder = {
   load: false,
   dataRequest: false,
   dataFailed: false,
   order: null,
 };
 
-const getOrderState = {
+export const getOrderState = {
   order:[],
   load: false,
   dataRequest: false,

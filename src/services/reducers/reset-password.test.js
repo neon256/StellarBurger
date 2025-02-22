@@ -1,4 +1,4 @@
-import { resetPassword } from './reset-password';
+import { initialResetPassword, resetPassword } from './reset-password';
 import {
   POST_FORGOT_PASSWORD_REQUEST,
   POST_FORGOT_PASSWORD_SUCCESS,
@@ -9,27 +9,21 @@ import {
 } from '../constants/reset-password';
 
 describe('resetPassword reducer', () => {
-  const initialState = {
-    success: false,
-    message: '',
-    load: false,
-    dataRequest: false,
-    dataFailed: false,
-  };
+  
 
   it('should return the initial state', () => {
-    expect(resetPassword(undefined, {})).toEqual(initialState);
+    expect(resetPassword(undefined, {})).toEqual(initialResetPassword);
   });
 
   // Тесты для POST_FORGOT_PASSWORD
   it('should handle POST_FORGOT_PASSWORD_REQUEST', () => {
     const action = { type: POST_FORGOT_PASSWORD_REQUEST };
     const expectedState = {
-      ...initialState,
+      ...initialResetPassword,
       load: true,
       dataRequest: true,
     };
-    expect(resetPassword(initialState, action)).toEqual(expectedState);
+    expect(resetPassword(initialResetPassword, action)).toEqual(expectedState);
   });
 
   it('should handle POST_FORGOT_PASSWORD_SUCCESS', () => {
@@ -38,36 +32,36 @@ describe('resetPassword reducer', () => {
       value: { success: true, message: 'Email sent successfully' },
     };
     const expectedState = {
-      ...initialState,
+      ...initialResetPassword,
       load: false,
       dataRequest: false,
       dataFailed: false,
       success: true,
       message: 'Email sent successfully',
     };
-    expect(resetPassword(initialState, action)).toEqual(expectedState);
+    expect(resetPassword(initialResetPassword, action)).toEqual(expectedState);
   });
 
   it('should handle POST_FORGOT_PASSWORD_FAILED', () => {
     const action = { type: POST_FORGOT_PASSWORD_FAILED };
     const expectedState = {
-      ...initialState,
+      ...initialResetPassword,
       load: false,
       dataRequest: false,
       dataFailed: true,
     };
-    expect(resetPassword(initialState, action)).toEqual(expectedState);
+    expect(resetPassword(initialResetPassword, action)).toEqual(expectedState);
   });
 
   // Тесты для POST_RESET_PASSWORD
   it('should handle POST_RESET_PASSWORD_REQUEST', () => {
     const action = { type: POST_RESET_PASSWORD_REQUEST };
     const expectedState = {
-      ...initialState,
+      ...initialResetPassword,
       load: true,
       dataRequest: true,
     };
-    expect(resetPassword(initialState, action)).toEqual(expectedState);
+    expect(resetPassword(initialResetPassword, action)).toEqual(expectedState);
   });
 
   it('should handle POST_RESET_PASSWORD_SUCCESS', () => {
@@ -76,24 +70,24 @@ describe('resetPassword reducer', () => {
       value: { success: true, message: 'Password reset successfully' },
     };
     const expectedState = {
-      ...initialState,
+      ...initialResetPassword,
       load: false,
       dataRequest: false,
       dataFailed: false,
       success: true,
       message: 'Password reset successfully',
     };
-    expect(resetPassword(initialState, action)).toEqual(expectedState);
+    expect(resetPassword(initialResetPassword, action)).toEqual(expectedState);
   });
 
   it('should handle POST_RESET_PASSWORD_FAILED', () => {
     const action = { type: POST_RESET_PASSWORD_FAILED };
     const expectedState = {
-      ...initialState,
+      ...initialResetPassword,
       load: false,
       dataRequest: false,
       dataFailed: true,
     };
-    expect(resetPassword(initialState, action)).toEqual(expectedState);
+    expect(resetPassword(initialResetPassword, action)).toEqual(expectedState);
   });
 });

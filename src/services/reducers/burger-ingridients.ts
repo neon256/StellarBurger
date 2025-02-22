@@ -13,14 +13,14 @@ type TInitialActiveTab = {
   tab: "one"|"two"|"three",
 };
 
-const initialState: TInitialState = {
+export const initialState: TInitialState = {
   data: [],
   load: true,
   dataRequest: false,
   dataFailed: false,
 };
 
-const initialActiveTab: TInitialActiveTab = {
+export const initialActiveTab: TInitialActiveTab = {
   tab: "one",
 };
 

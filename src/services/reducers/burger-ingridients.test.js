@@ -1,13 +1,8 @@
-import { listAllGetIngridients, activeTab } from './burger-ingridients';
+import { listAllGetIngridients, activeTab, initialState, initialActiveTab } from './burger-ingridients';
 import { GET_INGRIDIENTS_REQUEST, GET_INGRIDIENTS_SUCCESS, GET_INGRIDIENTS_FAILED, ACTIVE_TAB, CHANGE_TAB } from '../constants/burger-ingridients';
 
 describe('listAllGetIngridients reducer', () => {
-  const initialState = {
-    data: [],
-    load: true,
-    dataRequest: false,
-    dataFailed: false,
-  };
+  
 
   it('should return the initial state', () => {
     expect(listAllGetIngridients(undefined, {})).toEqual(initialState);
@@ -50,20 +45,18 @@ describe('listAllGetIngridients reducer', () => {
 });
 
 describe('activeTab reducer', () => {
-  const initialState = {
-    tab: 'one',
-  };
+  
 
   it('should return the initial state', () => {
-    expect(activeTab(undefined, {})).toEqual(initialState);
+    expect(activeTab(undefined, {})).toEqual(initialActiveTab);
   });
 
   it('should handle ACTIVE_TAB', () => {
-    const action = { type: ACTIVE_TAB, value: 'two' };
+    const action = { type: ACTIVE_TAB, value: "one" };
     const expectedState = {
-      tab: 'two',
+      tab: "one",
     };
-    expect(activeTab(initialState, action)).toEqual(expectedState);
+    expect(activeTab(initialActiveTab, action)).toEqual(expectedState);
   });
 
   it('should handle CHANGE_TAB', () => {
@@ -71,6 +64,6 @@ describe('activeTab reducer', () => {
     const expectedState = {
       tab: 'three',
     };
-    expect(activeTab(initialState, action)).toEqual(expectedState);
+    expect(activeTab(initialActiveTab, action)).toEqual(expectedState);
   });
 });
