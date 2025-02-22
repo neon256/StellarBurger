@@ -25,7 +25,7 @@ type TInitialAuth = {
   dataFailed: boolean,
 };
 
-const initialAuth: TInitialAuth = {
+export const initialAuth: TInitialAuth = {
   email: "",
   name: "",
   accessToken: "",

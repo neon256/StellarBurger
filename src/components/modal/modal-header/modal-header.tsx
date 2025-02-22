@@ -22,7 +22,10 @@ const ModalHeader: FC<IModalHeader> = ({children, onClose}) => {
   return (
     <div className={`${modalStyle.header} text text_type_main-large`}>
         <p>{children}</p>
-        <CloseIcon type="primary" onClick={()=>{closeModal()}} className={modalStyle.close}/>
+        <div onClick={()=>{closeModal()}} id='close'>
+          <CloseIcon type="primary" className={modalStyle.close}/>
+        </div>
+        
     </div>
   )
 }

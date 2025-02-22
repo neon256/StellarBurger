@@ -77,7 +77,7 @@ const BurgerIngredientsCard: FC<IBurgerIngredientsCard> = ({ id, ing, location }
 
     return (
         <>
-            <Link ref={dragRef} className={`ml-4 ${burgerIngredientsStyle.card}`} key={id} onClick={() => handleOpenModal(ing)} to={`/ingredients/${id}`} state={{background: location}}>
+            <Link ref={dragRef} className={`ml-4 ${burgerIngredientsStyle.card}`} id='ing' key={id} onClick={() => handleOpenModal(ing)} to={`/ingredients/${id}`} state={{background: location}}>
                 <img src={ing.image} alt="Фото булки" className='ml-4 mr-4' />
                 <div className={`text text_type_digits-default mt-1 mb-1 ${burgerIngredientsStyle.price}`}>{ing.price}<CurrencyIcon type="primary" /></div>
                 <p className='text text_type_main-default'>{ing.name}</p>

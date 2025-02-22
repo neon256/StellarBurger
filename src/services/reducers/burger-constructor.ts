@@ -10,7 +10,7 @@ type TInitialContructor = {
   isDraggingIng: boolean| Array<IIngredients>,
 }
 
-const initialConstuctor: TInitialContructor = {
+export const initialConstuctor: TInitialContructor = {
   bun: null,
   ingredients: [],
 

@@ -18,7 +18,7 @@ const ModalOverlay: FC<IModalOverlay> = ({ onClose }) => {
     return onClose();
   }
   return (
-    <div className={modalStyle.overlay} onClick={()=>{closeModal()}}>
+    <div className={modalStyle.overlay} onClick={()=>{closeModal()}} id='overlay'>
 
     </div>
   )

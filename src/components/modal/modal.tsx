@@ -42,7 +42,7 @@ const Modal: FC<IModal> = ({ onClose, children, header }) => {
     return ReactDOM.createPortal(
         (
             <>
-                <div className={modalStyle.modal}>
+                <div className={modalStyle.modal} id='modal'>
                     <ModalHeader onClose={onClose}>{header}</ModalHeader>
                     {children}
                 </div>

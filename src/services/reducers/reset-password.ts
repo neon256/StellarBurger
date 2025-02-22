@@ -16,7 +16,7 @@ type TInitialResetPassword = {
   dataFailed: boolean,
 };
 
-const initialResetPassword: TInitialResetPassword = {
+export const initialResetPassword: TInitialResetPassword = {
   success: false,
   message: "",
   load: false,

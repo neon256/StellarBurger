@@ -8,7 +8,7 @@ import {
   WEBSOCKET_MESSAGE_RECEIVED,
 } from "../constants/ws";
 
-const initialState = {
+export const initialState = {
   feed: [],
   isConnecting: false,
   orders: [],
